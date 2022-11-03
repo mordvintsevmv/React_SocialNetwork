@@ -15,10 +15,10 @@ const MyPosts = () => {
                 <div className={MyPostsCSS.item}>
                     All Posts
 
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
+                    <Post content="First post"/>
+                    <Post content="Interesting"/>
+                    <Post content="Hi!"/>
+                    <Post content="Bye!"/>
                 </div>
             </div>
     );

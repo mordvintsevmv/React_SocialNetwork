@@ -1,10 +1,10 @@
 import PostCSS from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
     return(
         <div className={PostCSS.item}>
             <img src='avatar.png' />
-            Post 1
+            {props.content}
             <div>
                 <button>Like</button>
                 <button>Dislike</button>
