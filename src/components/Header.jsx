@@ -1,7 +1,8 @@
+import HeaderCSS from './Header.module.css';
 
 const Header = () => {
     return (
-        <header className='header'>
+        <header className={HeaderCSS.header}>
             <img src='logoMonkey.ico' alt='monkey'/>
         </header>
 

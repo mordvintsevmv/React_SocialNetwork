@@ -1,25 +1,26 @@
+import NavCSS from './Nav.module.css';
 
 const Nav = () => {
     return (
-        <nav className='nav'>
+        <nav className={NavCSS.nav}>
 
-            <div>
+            <div className={NavCSS.item + " " + NavCSS.active}>
                 Profile
             </div>
 
-            <div>
+            <div className={`${NavCSS.item} ${NavCSS.active}`}>
                 Messages
             </div>
 
-            <div>
+            <div className={NavCSS.item}>
                 News
             </div>
 
-            <div>
+            <div className={NavCSS.item}>
                 Music
             </div>
 
-            <div>
+            <div className={NavCSS.item}>
                 Settings
             </div>
 

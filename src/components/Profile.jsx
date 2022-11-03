@@ -1,7 +1,8 @@
+import ProfileCSS from './Profile.module.css';
 
 const Profile = () => {
     return(
-        <div className='content'>
+        <div className={ProfileCSS.content}>
             <div>
                 <img src='forest.jpg'/>
             </div>
