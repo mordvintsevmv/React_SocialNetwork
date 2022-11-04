@@ -2,6 +2,16 @@ import MyPostsCSS from './MyPosts.module.css';
 import Post from'./Post/Post';
 
 const MyPosts = () => {
+
+    let postData = [
+        {id: "1", text: "First post", likes: "5"},
+        {id: "2", text: "Interesting", likes: "10"},
+        {id: "3", text: "Hi!", likes: "47"},
+        {id: "4", text: "Bye!", likes: "0"},
+    ]
+
+    let postElements = postData.map(el => <Post text={el.text} likes={el.likes}/>)
+
     return(
             <div>
                 Posts
@@ -15,10 +25,8 @@ const MyPosts = () => {
                 <div>
                     All Posts
 
-                    <Post content="First post"/>
-                    <Post content="Interesting"/>
-                    <Post content="Hi!"/>
-                    <Post content="Bye!"/>
+                    {postElements}
+
                 </div>
             </div>
     );

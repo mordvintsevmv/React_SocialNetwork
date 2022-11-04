@@ -5,11 +5,11 @@
     padding: 10px 0 0 10px;
 }
 
-.nav a{
+a{
     color: white;
     text-decoration: none;
 }
 
-.active {
+.active{
     color: grey;
 }
