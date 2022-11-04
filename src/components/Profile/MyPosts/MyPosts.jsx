@@ -12,7 +12,7 @@ const MyPosts = () => {
                     <button>Post</button>
                 </div>
 
-                <div className={MyPostsCSS.item}>
+                <div>
                     All Posts
 
                     <Post content="First post"/>

@@ -3,8 +3,8 @@ import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
     return(
-        <div className={ProfileCSS.content}>
-            <div>
+        <div>
+            <div className={ProfileCSS.back}>
                 <img src='forest.jpg'/>
             </div>
 
