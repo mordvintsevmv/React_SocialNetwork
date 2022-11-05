@@ -1,15 +1,12 @@
 .dialogue_item {
     margin-bottom: 30px;
-    color: black;
 }
 
 .dialogue_item a{
     text-decoration: none;
 }
-.dialogue_active{
-    color:red;
-}
 
-.dialogue_inactive{
+.dialogue_item .dialogue_active{
     color: black;
 }
+

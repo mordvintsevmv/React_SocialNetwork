@@ -6,6 +6,15 @@
 
 .dialogues{
     padding: 20px;
+    border-right: 2px solid black;
+}
+
+.dialogues a{
+    color: #847577;
+}
+
+.dialogues a:hover{
+    color: #FE7555;
 }
 
 .chat{
