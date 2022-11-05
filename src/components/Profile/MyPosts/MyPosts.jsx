@@ -1,29 +1,24 @@
 import MyPostsCSS from './MyPosts.module.css';
 import Post from'./Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
 
-    let postData = [
-        {id: "1", text: "First post", likes: "5"},
-        {id: "2", text: "Interesting", likes: "10"},
-        {id: "3", text: "Hi!", likes: "47"},
-        {id: "4", text: "Bye!", likes: "0"},
-    ]
 
-    let postElements = postData.map(el => <Post text={el.text} likes={el.likes}/>)
+    let postElements = props.postData.map(el => <Post text={el.text} likes={el.likes} name={el.name}/>)
 
     return(
-            <div>
-                Posts
+            <div className={MyPostsCSS.post_wrapper}>
+
+                <h1>Your Wall</h1>
 
                 <div>
-                    <p>New Post</p>
+                    <h4>New Post</h4>
                     <textarea></textarea>
                     <button>Post</button>
                 </div>
 
                 <div>
-                    All Posts
+                    <h2>All Posts</h2>
 
                     {postElements}
 

@@ -1,10 +1,21 @@
 .header{
     grid-area: header;
-    background-color: #CCFFCC;
-    margin: auto 0;
+    background-color: #313131;
+    position: relative;
+    height: 50px;
 }
 
 .header img{
+    position: absolute;
     width: 40px;
     padding-left: 10px;
+    filter: invert(100%);
+    top:5px
+}
+
+.name{
+    color: white;
+    position: absolute;
+    left: 60px;
+    top: -8px
 }

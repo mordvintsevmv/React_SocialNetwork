@@ -2,12 +2,12 @@ import ProfileCSS from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+const Profile = (props) => {
     return(
-        <div>
+        <div className={ProfileCSS.profile_wrapper}>
             <ProfileInfo />
 
-            <MyPosts />
+            <MyPosts postData={props.profilePage.postData}/>
         </div>
     );
 }

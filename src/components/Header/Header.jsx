@@ -3,7 +3,8 @@ import HeaderCSS from './Header.module.css';
 const Header = () => {
     return (
         <header className={HeaderCSS.header}>
-            <img src='logoMonkey.ico' alt='monkey'/>
+            <a href="/"><img src='logoMonkey.ico' alt='monkey'/></a>
+            <h2 className={HeaderCSS.name}>Jija Net</h2>
         </header>
 
     );

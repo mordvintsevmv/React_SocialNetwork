@@ -1,13 +1,40 @@
 .item img{
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
 }
 
 .item{
     margin: 20px 0;
 }
 
-.like_text{
+.like_count{
     font-size: 7pt;
+}
+
+.avatar{
+    position: absolute;
+}
+
+.post{
+    position: absolute;
+    left: 70px;
+    top: 10px;
+}
+
+.name {
+    font-size: 14pt;
+}
+
+.text{
+    font-size: 10pt;
+    color: #847577;
+}
+
+.like_dislike{
+}
+
+.post_info{
+    position: relative;
+    min-height: 65px;
 }

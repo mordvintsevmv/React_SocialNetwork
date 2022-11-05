@@ -1,15 +1,30 @@
 .nav{
-    grid-area: nav;
-    background-color: darkslategrey;
-    height: 800px;
-    padding: 10px 0 0 10px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 6px -3px;
 }
 
-a{
-    color: white;
+.item_block a{
     text-decoration: none;
+    position: absolute;
+    color: #847577;
+    top: 50%;
+    transform: translate(0%, -50%);
 }
 
-.active{
-    color: grey;
+.item_block a:hover{
+    color: #FE7555;
 }
+
+.item_block .active{
+    color: black;
+}
+
+.item_block{
+    padding-bottom: 10px;
+    width: 180px;
+    margin: 10px auto;
+    position: relative;
+    height: 20px;
+}
+
