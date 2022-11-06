@@ -23,7 +23,8 @@ let state = {
             {id: "3", name: "Masha"},
             {id: "4", name: "Igor"},
             {id: "5", name: "Anton"},
-            {id: "6", name: "Nick"}
+            {id: "6", name: "Nick"},
+            {id: "7", name: "Polina"}
         ]
     }
 }

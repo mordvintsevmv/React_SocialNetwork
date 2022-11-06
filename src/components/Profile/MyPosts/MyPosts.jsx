@@ -6,6 +6,11 @@ const MyPosts = (props) => {
 
     let postElements = props.postData.map(el => <Post text={el.text} likes={el.likes} name={el.name}/>)
 
+    let addPost = () => {
+        let text = document.getElementById("text-area").value;
+        alert(text);
+    }
+
     return(
             <div className={MyPostsCSS.post_wrapper}>
 
@@ -13,8 +18,8 @@ const MyPosts = (props) => {
 
                 <div>
                     <h4>New Post</h4>
-                    <textarea></textarea>
-                    <button>Post</button>
+                    <textarea id="text-area"></textarea>
+                    <button onClick={ addPost }>Post</button>
                 </div>
 
                 <div>

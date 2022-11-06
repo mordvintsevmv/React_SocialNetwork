@@ -7,7 +7,7 @@ const Post = (props) => {
             <div className={PostCSS.post_info}>
 
                 <div className={PostCSS.avatar}>
-                    <img src='avatar.png' />
+                    <img src='avatar.png' alt=""/>
                 </div>
 
                 <div className={PostCSS.post}>
