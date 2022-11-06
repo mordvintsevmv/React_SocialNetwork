@@ -3,11 +3,13 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
+
+
     return(
         <div className={ProfileCSS.profile_wrapper}>
             <ProfileInfo />
 
-            <MyPosts postData={props.profilePage.postData}/>
+            <MyPosts postData={props.profilePage.postData} currentPost={props.profilePage.currentPost} addPost={props.addPost} editCurrentPost={props.editCurrentPost}/>
         </div>
     );
 }

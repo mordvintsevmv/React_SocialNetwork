@@ -12,7 +12,7 @@ import {Route, Routes} from "react-router-dom";
 
 const App = (props) => {
 
-  return (
+    return (
           <div className='app-wrapper'>
 
               <Header />
@@ -26,8 +26,8 @@ const App = (props) => {
 
                       <Routes>
 
-                          <Route path="/profile/*" element={<Profile profilePage={props.appState.profilePage}/>} />
-                          <Route path="/messages/*" element={<Messages messagePage={props.appState.messagePage} />} />
+                          <Route path="/profile/*" element={<Profile profilePage={props.appState.profilePage} addPost={props.addPost} editCurrentPost={props.editCurrentPost} />} />
+                          <Route path="/messages/*" element={<Messages messagePage={props.appState.messagePage} addMessage={props.addMessage} editCurrentMessage={props.editCurrentMessage}/>} />
                           <Route path="/news/*" element={<News />} />
                           <Route path="/music/*" element={<Music />} />
                           <Route path="/settings/*" element={<Settings />} />

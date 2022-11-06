@@ -21,7 +21,6 @@ const Post = (props) => {
 
             <div className={PostCSS.like_dislike}>
                 <button>Like</button>
-                <button>Dislike</button>
             </div>
 
             <div className={PostCSS.like_count}>

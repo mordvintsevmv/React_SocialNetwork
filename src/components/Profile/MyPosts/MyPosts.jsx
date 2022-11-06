@@ -1,14 +1,17 @@
 import MyPostsCSS from './MyPosts.module.css';
 import Post from'./Post/Post';
+import React from 'react'
 
 const MyPosts = (props) => {
 
 
-    let postElements = props.postData.map(el => <Post text={el.text} likes={el.likes} name={el.name}/>)
+    let postElements = props.postData.map(el => <Post text={el.text} likes={el.likes} name={el.name}/>);
 
-    let addPost = () => {
-        let text = document.getElementById("text-area").value;
-        alert(text);
+    let newPostElement = React.createRef();
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        props.editCurrentPost(text);
     }
 
     return(
@@ -18,8 +21,8 @@ const MyPosts = (props) => {
 
                 <div>
                     <h4>New Post</h4>
-                    <textarea id="text-area"></textarea>
-                    <button onClick={ addPost }>Post</button>
+                    <textarea ref={newPostElement} value={props.currentPost.text} onChange={ onPostChange }/>
+                    <button onClick={ props.addPost }>Post</button>
                 </div>
 
                 <div>
