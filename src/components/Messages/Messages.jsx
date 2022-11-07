@@ -13,7 +13,11 @@ const Messages = (props) => {
 
     let editCurrentMessage = () => {
         let text = newMessage.current.value;
-        props.editCurrentMessage(text);
+        props.store.editCurrentMessage(text);
+    }
+
+    let addMessage = () => {
+        props.store.addMessage();
     }
 
 
@@ -28,7 +32,7 @@ const Messages = (props) => {
                 {messageElements}
 
                 <textarea ref={ newMessage } value={ props.messagePage.currentMessage.text} onChange={ editCurrentMessage }></textarea>
-                <button onClick={ props.addMessage }>Send</button>
+                <button onClick={ addMessage }>Send</button>
             </div>
 
         </div>
