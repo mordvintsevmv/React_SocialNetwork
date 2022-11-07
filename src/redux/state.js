@@ -11,7 +11,7 @@ export let store = {
                 {id: 4, name:"Sasha",text: "Bye!", likes: 0} ],
 
             currentPost : {
-                text: "цйуцу",
+                text: "",
             }
         },
 

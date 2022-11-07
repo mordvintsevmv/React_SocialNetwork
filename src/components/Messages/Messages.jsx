@@ -13,13 +13,8 @@ const Messages = (props) => {
 
     let editCurrentMessage = () => {
         let text = newMessage.current.value;
-        props.store.editCurrentMessage(text);
+        props.editCurrentMessage(text);
     }
-
-    let addMessage = () => {
-        props.store.addMessage();
-    }
-
 
     return (
         <div className={MessagesCSS.message_wrapper}>
@@ -32,7 +27,7 @@ const Messages = (props) => {
                 {messageElements}
 
                 <textarea ref={ newMessage } value={ props.messagePage.currentMessage.text} onChange={ editCurrentMessage }></textarea>
-                <button onClick={ addMessage }>Send</button>
+                <button onClick={ props.addMessage }>Send</button>
             </div>
 
         </div>
