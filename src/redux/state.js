@@ -43,6 +43,48 @@ export let store = {
         console.log("No subscriber!");
     },
 
+    _addPost(){
+        this._state.profilePage.postData.push({
+            id: 5,
+            name: "Polina",
+            text: this._state.profilePage.currentPost.text,
+            likes: 0
+        });
+
+        this._state.profilePage.currentPost = {
+            text: "",
+        };
+
+        this._subscriber(store);
+    },
+
+    _editCurrentPost(currentText){
+        this._state.profilePage.currentPost = {
+            text: currentText,
+        };
+        this._subscriber(store);
+    },
+
+    _addMessage(){
+        this._state.messagePage.messageData.push({
+            id: 3,
+            message: this._state.messagePage.currentMessage.text,
+        });
+
+        this._state.messagePage.currentMessage = {
+            text: "",
+        }
+
+        this._subscriber(store);
+    },
+
+    _editCurrentMessage(currentText){
+        this._state.messagePage.currentMessage = {
+            text: currentText,
+        }
+        this._subscriber(store);
+    },
+
     subscribe(observer) {
         this._subscriber = observer;
     },
@@ -54,45 +96,19 @@ export let store = {
     dispatch(action) {
 
         if (action.type === "ADD-POST") {
-            this._state.profilePage.postData.push({
-                id: 5,
-                name: "Polina",
-                text: this._state.profilePage.currentPost.text,
-                likes: 0
-            });
-
-            this._state.profilePage.currentPost = {
-                text: "",
-            };
-
-            this._subscriber(store);
+            this._addPost();
         }
 
         else if (action.type === "EDIT-CURRENT-POST") {
-            this._state.profilePage.currentPost = {
-                text: action.currentText,
-            };
-            this._subscriber(store);
+            this._editCurrentPost(action.currentText);
         }
 
         else if (action.type === "ADD-MESSAGE") {
-            this._state.messagePage.messageData.push({
-                id: 3,
-                message: this._state.messagePage.currentMessage.text,
-            });
-
-            this._state.messagePage.currentMessage = {
-                text: "",
-            }
-
-            this._subscriber(store);
+            this._addMessage();
         }
 
         else if (action.type === "EDIT-CURRENT-MESSAGE") {
-            this._state.messagePage.currentMessage = {
-                text: action.currentText,
-            }
-            this._subscriber(store);
+            this._editCurrentMessage(action.currentText);
         }
     }
 
