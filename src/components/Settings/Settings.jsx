@@ -1,6 +1,4 @@
-import SettingsCSS from './Settings.module.css';
-
-const Settings = (props) => {
+const Settings = () => {
     return(
         <div>
             Settings!
