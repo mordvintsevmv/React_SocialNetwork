@@ -1,11 +1,6 @@
 import {profilePageReducer} from "./ProfilePageReducer";
 import {messagePageReducer} from "./MessagePageReducer";
 
-const ADD_POST = "ADD-POST"
-const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
-const ADD_MESSAGE = "ADD-MESSAGE"
-const EDIT_CURRENT_MESSAGE = "EDIT-CURRENT-MESSAGE"
-
 export let store = {
 
     _state: {
@@ -70,30 +65,3 @@ export let store = {
 
 }
 
-
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-
-export const onPostChangeActionCreator = (currentText) => {
-    return {
-        type: EDIT_CURRENT_POST,
-        currentText: currentText
-    }
-}
-
-export const addMessageActionCreator = () => {
-    return {
-        type: ADD_MESSAGE
-    }
-}
-
-export const onMessageChangeActionCreator = (currentText) => {
-    return {
-        type: EDIT_CURRENT_MESSAGE,
-        currentText: currentText
-    }
-}

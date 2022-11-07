@@ -2,7 +2,7 @@ import MessagesCSS from './Messages.module.css';
 import DialogueItem from "./DialogueItem/DialogueItem";
 import ChatItem from "./ChatItem/ChatItem";
 import React from "react";
-import {addMessageActionCreator, onMessageChangeActionCreator} from "../../redux/state";
+import {addMessageActionCreator, onMessageChangeActionCreator} from "../../redux/MessagePageReducer";
 
 const Messages = (props) => {
 
