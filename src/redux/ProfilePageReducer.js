@@ -14,7 +14,19 @@ export const onPostChangeActionCreator = (currentText) => {
     }
 }
 
-export const profilePageReducer = (state, action) => {
+let initial_state = {
+    postData: [
+        {id: 1, name: "Maksim", text: "First post", likes: 5},
+        {id: 2, name: "Anton", text: "Interesting", likes: 10},
+        {id: 3, name: "Maksim", text: "Hi!", likes: 47},
+        {id: 4, name: "Sasha", text: "Bye!", likes: 0}],
+
+    currentPost: {
+        text: "",
+    }
+}
+
+export const profilePageReducer = (state = initial_state, action) => {
 
     switch (action.type){
         case(ADD_POST): {
@@ -40,7 +52,7 @@ export const profilePageReducer = (state, action) => {
         }
 
         default:{
-            break;
+            return state;
         }
 
     }

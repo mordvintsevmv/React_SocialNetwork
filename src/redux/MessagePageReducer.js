@@ -14,7 +14,29 @@ export const onMessageChangeActionCreator = (currentText) => {
     }
 }
 
-export const messagePageReducer = (state, action) => {
+let initial_state = {
+    messageData: [
+        {id: 1, message: "Hi!"},
+        {id: 2, message: "Good News!"},
+        {id: 3, message: "GoodBye!"},
+    ],
+
+    dialogueData: [
+        {id: 1, name: "Maksim"},
+        {id: 2, name: "Andrey"},
+        {id: 3, name: "Masha"},
+        {id: 4, name: "Igor"},
+        {id: 5, name: "Anton"},
+        {id: 6, name: "Nick"},
+        {id: 7, name: "Polina"}
+    ],
+
+    currentMessage: {
+        text: "",
+    }
+}
+
+export const messagePageReducer = (state = initial_state, action) => {
 
     switch (action.type){
 
@@ -39,7 +61,7 @@ export const messagePageReducer = (state, action) => {
         }
 
         default:{
-            break;
+            return state;
         }
 
     }
