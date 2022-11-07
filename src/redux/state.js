@@ -1,3 +1,6 @@
+import {profilePageReducer} from "./ProfilePageReducer";
+import {messagePageReducer} from "./MessagePageReducer";
+
 const ADD_POST = "ADD-POST"
 const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
 const ADD_MESSAGE = "ADD-MESSAGE"
@@ -58,58 +61,10 @@ export let store = {
 
     dispatch(action) {
 
-        switch (action.type){
-            case(ADD_POST): {
-                this._state.profilePage.postData.push({
-                    id: 5,
-                    name: "Polina",
-                    text: this._state.profilePage.currentPost.text,
-                    likes: 0
-                });
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+        this._state.messagePage = messagePageReducer(this._state.messagePage, action);
 
-                this._state.profilePage.currentPost = {
-                    text: "",
-                };
-
-                this._subscriber(store);
-                break;
-            }
-
-            case(EDIT_CURRENT_POST):{
-                this._state.profilePage.currentPost = {
-                    text: action.currentText,
-                };
-                this._subscriber(store);
-                break;
-            }
-
-            case(ADD_MESSAGE):{
-                this._state.messagePage.messageData.push({
-                    id: 3,
-                    message: this._state.messagePage.currentMessage.text,
-                });
-
-                this._state.messagePage.currentMessage = {
-                    text: "",
-                }
-
-                this._subscriber(store);
-                break;
-            }
-
-            case(EDIT_CURRENT_MESSAGE):{
-                this._state.messagePage.currentMessage = {
-                    text: action.currentText,
-                }
-                this._subscriber(store);
-                break;
-            }
-
-            default:{
-                console.log("Unknown action!");
-            }
-
-        }
+        this._subscriber(this._state);
 
     },
 
