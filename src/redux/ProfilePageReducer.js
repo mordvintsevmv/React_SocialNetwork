@@ -40,7 +40,6 @@ export const profilePageReducer = (state, action) => {
         }
 
         default:{
-            console.log("Unknown action!");
             break;
         }
 

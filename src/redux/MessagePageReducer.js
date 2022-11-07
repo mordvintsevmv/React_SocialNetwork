@@ -39,7 +39,6 @@ export const messagePageReducer = (state, action) => {
         }
 
         default:{
-            console.log("Unknown action!");
             break;
         }
 
