@@ -1,3 +1,8 @@
+const ADD_POST = "ADD-POST"
+const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
+const ADD_MESSAGE = "ADD-MESSAGE"
+const EDIT_CURRENT_MESSAGE = "EDIT-CURRENT-MESSAGE"
+
 export let store = {
 
     _state: {
@@ -54,7 +59,7 @@ export let store = {
     dispatch(action) {
 
         switch (action.type){
-            case("ADD-POST"): {
+            case(ADD_POST): {
                 this._state.profilePage.postData.push({
                     id: 5,
                     name: "Polina",
@@ -70,7 +75,7 @@ export let store = {
                 break;
             }
 
-            case("EDIT-CURRENT-POST"):{
+            case(EDIT_CURRENT_POST):{
                 this._state.profilePage.currentPost = {
                     text: action.currentText,
                 };
@@ -78,7 +83,7 @@ export let store = {
                 break;
             }
 
-            case("ADD-MESSAGE"):{
+            case(ADD_MESSAGE):{
                 this._state.messagePage.messageData.push({
                     id: 3,
                     message: this._state.messagePage.currentMessage.text,
@@ -92,7 +97,7 @@ export let store = {
                 break;
             }
 
-            case("EDIT-CURRENT-MESSAGE"):{
+            case(EDIT_CURRENT_MESSAGE):{
                 this._state.messagePage.currentMessage = {
                     text: action.currentText,
                 }
@@ -100,12 +105,40 @@ export let store = {
                 break;
             }
 
+            default:{
+                console.log("Unknown action!");
+            }
+
         }
 
-    }
-
-
-
+    },
 
 }
 
+
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const onPostChangeActionCreator = (currentText) => {
+    return {
+        type: EDIT_CURRENT_POST,
+        currentText: currentText
+    }
+}
+
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const onMessageChangeActionCreator = (currentText) => {
+    return {
+        type: EDIT_CURRENT_MESSAGE,
+        currentText: currentText
+    }
+}

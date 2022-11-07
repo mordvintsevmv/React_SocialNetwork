@@ -2,6 +2,7 @@ import MessagesCSS from './Messages.module.css';
 import DialogueItem from "./DialogueItem/DialogueItem";
 import ChatItem from "./ChatItem/ChatItem";
 import React from "react";
+import {addMessageActionCreator, onMessageChangeActionCreator} from "../../redux/state";
 
 const Messages = (props) => {
 
@@ -11,17 +12,12 @@ const Messages = (props) => {
 
     let newMessage = React.createRef();
 
-    let editCurrentMessage = () => {
-        props.dispatch({
-            type: "EDIT-CURRENT-MESSAGE",
-            currentText: newMessage.current.value
-        });
+    let onMessageChange = () => {
+        props.dispatch(onMessageChangeActionCreator(newMessage.current.value));
     }
 
     let addMessage = () => {
-        props.dispatch({
-            type: "ADD-MESSAGE"
-        })
+        props.dispatch(addMessageActionCreator())
     }
 
     return (
@@ -34,7 +30,7 @@ const Messages = (props) => {
             <div className={MessagesCSS.chat}>
                 {messageElements}
 
-                <textarea ref={ newMessage } value={ props.messagePage.currentMessage.text} onChange={ editCurrentMessage }></textarea>
+                <textarea ref={ newMessage } value={ props.messagePage.currentMessage.text} onChange={ onMessageChange }></textarea>
                 <button onClick={ addMessage }>Send</button>
             </div>
 
