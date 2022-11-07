@@ -9,7 +9,7 @@ const Profile = (props) => {
         <div className={ProfileCSS.profile_wrapper}>
             <ProfileInfo />
 
-            <MyPosts postData={props.profilePage.postData} currentPost={props.profilePage.currentPost} editCurrentPost={props.editCurrentPost} addPost={props.addPost}/>
+            <MyPosts postData={props.profilePage.postData} currentPost={props.profilePage.currentPost} dispatch={props.dispatch}/>
         </div>
     );
 }

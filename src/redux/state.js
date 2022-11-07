@@ -1,29 +1,29 @@
 export let store = {
 
-    _state : {
+    _state: {
 
-        profilePage : {
+        profilePage: {
 
-            postData : [
-                {id: 1, name:"Maksim", text: "First post", likes: 5},
-                {id: 2, name:"Anton", text: "Interesting", likes: 10},
-                {id: 3, name:"Maksim", text: "Hi!", likes: 47},
-                {id: 4, name:"Sasha",text: "Bye!", likes: 0} ],
+            postData: [
+                {id: 1, name: "Maksim", text: "First post", likes: 5},
+                {id: 2, name: "Anton", text: "Interesting", likes: 10},
+                {id: 3, name: "Maksim", text: "Hi!", likes: 47},
+                {id: 4, name: "Sasha", text: "Bye!", likes: 0}],
 
-            currentPost : {
+            currentPost: {
                 text: "",
             }
         },
 
-        messagePage : {
+        messagePage: {
 
-            messageData : [
+            messageData: [
                 {id: 1, message: "Hi!"},
                 {id: 2, message: "Good News!"},
                 {id: 3, message: "GoodBye!"},
             ],
 
-            dialogueData : [
+            dialogueData: [
                 {id: 1, name: "Maksim"},
                 {id: 2, name: "Andrey"},
                 {id: 3, name: "Masha"},
@@ -33,7 +33,7 @@ export let store = {
                 {id: 7, name: "Polina"}
             ],
 
-            currentMessage : {
+            currentMessage: {
                 text: "",
             }
         }
@@ -43,57 +43,58 @@ export let store = {
         console.log("No subscriber!");
     },
 
-    addPost() {
-
-        this._state.profilePage.postData.push({
-            id: 5,
-            name: "Polina",
-            text: this._state.profilePage.currentPost.text,
-            likes: 0
-        });
-
-        this._state.profilePage.currentPost = {
-            text: "",
-        };
-
-        this._subscriber(store);
-    },
-
-    addMessage() {
-
-        this._state.messagePage.messageData.push({
-            id: 3,
-            message: this._state.messagePage.currentMessage.text,
-        });
-
-        this._state.messagePage.currentMessage = {
-            text: "",
-        }
-
-        this._subscriber(store);
-    },
-
-    editCurrentPost(currentText) {
-        this._state.profilePage.currentPost = {
-            text: currentText,
-        };
-        this._subscriber(store);
-    },
-
-    editCurrentMessage(currentText) {
-        this._state.messagePage.currentMessage = {
-            text: currentText,
-        }
-        this._subscriber(store);
-    },
-
     subscribe(observer) {
         this._subscriber = observer;
     },
 
-    getState(){
+    getState() {
         return this._state;
     },
+
+    dispatch(action) {
+
+        if (action.type === "ADD-POST") {
+            this._state.profilePage.postData.push({
+                id: 5,
+                name: "Polina",
+                text: this._state.profilePage.currentPost.text,
+                likes: 0
+            });
+
+            this._state.profilePage.currentPost = {
+                text: "",
+            };
+
+            this._subscriber(store);
+        }
+
+        else if (action.type === "EDIT-CURRENT-POST") {
+            this._state.profilePage.currentPost = {
+                text: action.currentText,
+            };
+            this._subscriber(store);
+        }
+
+        else if (action.type === "ADD-MESSAGE") {
+            this._state.messagePage.messageData.push({
+                id: 3,
+                message: this._state.messagePage.currentMessage.text,
+            });
+
+            this._state.messagePage.currentMessage = {
+                text: "",
+            }
+
+            this._subscriber(store);
+        }
+
+        else if (action.type === "EDIT-CURRENT-MESSAGE") {
+            this._state.messagePage.currentMessage = {
+                text: action.currentText,
+            }
+            this._subscriber(store);
+        }
+    }
 
 
 

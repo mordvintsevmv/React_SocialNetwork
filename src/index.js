@@ -12,7 +12,7 @@ export let rerenderAllTree = (store) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={store.getState()} addPost={store.addPost.bind(store)} editCurrentPost={store.editCurrentPost.bind(store)} addMessage={store.addMessage.bind(store)} editCurrentMessage={store.editCurrentMessage.bind(store)}/>
+                <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>
     );
