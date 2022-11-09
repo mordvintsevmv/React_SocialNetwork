@@ -34,19 +34,25 @@ export const profilePageReducer = (state = initial_state, action) => {
 
             let stateCopy = {
                 ...state,
-                postData: [...state.postData]
+
+                postData: [...state.postData,
+
+                    {
+                    id: state.postData.at(-1).id+1,
+                    name: "Polina",
+                    text: state.currentPost.text,
+                    likes: 0
+                    }
+
+                ],
+
+                currentPost:
+                    {
+                    text: "",
+                    }
+
             };
 
-            stateCopy.postData.push({
-                id: stateCopy.postData.at(-1).id+1,
-                name: "Polina",
-                text: stateCopy.currentPost.text,
-                likes: 0
-            });
-
-            stateCopy.currentPost = {
-                text: "",
-            };
 
             return stateCopy;
         }

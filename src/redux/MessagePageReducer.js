@@ -46,18 +46,24 @@ export const messagePageReducer = (state = initial_state, action) => {
         case(ADD_MESSAGE):{
 
             let stateCopy = {
+
                 ...state,
-                messages: [...state.messageData]};
 
+                messageData: [...state.messageData,
 
-            stateCopy.messageData.push({
-                id: stateCopy.messageData.at(-1).id+1,
-                message: stateCopy.currentMessage.text,
-            });
+                    {
+                        id: state.messageData.at(-1).id+1,
+                        message: state.currentMessage.text,
+                    }
 
-            stateCopy.currentMessage = {
-                text: "",
-            }
+                ],
+
+                currentMessage:
+                    {
+                    text: ""
+                    }
+            };
+
 
             return stateCopy;
         }
