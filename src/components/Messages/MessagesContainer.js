@@ -1,21 +1,34 @@
 import React from "react";
 import {addMessageActionCreator, onMessageChangeActionCreator} from "../../redux/MessagePageReducer";
 import Messages from "./Messages";
+import {StoreContext} from "../../storeContext";
 
-const MessagesContainer = (props) => {
-
-    let state = props.store.getState();
-
-    let messageChange = (text) => {
-        props.store.dispatch(onMessageChangeActionCreator(text));
-    }
-
-    let addMessage = () => {
-        props.store.dispatch(addMessageActionCreator())
-    }
+const MessagesContainer = () => {
 
     return (
-       <Messages messageChange={messageChange} addMessage={addMessage} dialogueData={state.messagePage.dialogueData} currentMessage={state.messagePage.currentMessage} messageData={state.messagePage.messageData}/>
+        <StoreContext.Consumer>{
+            (store) => {
+
+                let messageChange = (text) => {
+                    store.dispatch(onMessageChangeActionCreator(text));
+                }
+
+                let addMessage = () => {
+                    store.dispatch(addMessageActionCreator())
+                }
+
+                return (
+                    <Messages
+                        messageChange={messageChange}
+                        addMessage={addMessage}
+                        dialogueData={store.getState().messagePage.dialogueData}
+                        currentMessage={store.getState().messagePage.currentMessage}
+                        messageData={store.getState().messagePage.messageData}/>
+                );
+            }
+        }
+
+        </StoreContext.Consumer>
     )
 }
 
