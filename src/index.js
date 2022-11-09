@@ -5,22 +5,17 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom"
 import {store} from "./redux/reduxStore";
-import {Provider} from "./storeContext";
-
+import {Provider} from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderAllTree = () => {
-    root.render(
+
+root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <Provider store={store} child={<App />}/>
+                <Provider store={store} children={<App />}/>
             </BrowserRouter>
         </React.StrictMode>
-    );
-}
+);
 
-store.subscribe(rerenderAllTree);
-
-rerenderAllTree();
 
 reportWebVitals();

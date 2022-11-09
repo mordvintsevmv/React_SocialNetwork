@@ -5,9 +5,9 @@ import React from "react";
 
 const Messages = (props) => {
 
-    let dialoguesElements = props.dialogueData.map((el) => <DialogueItem id={el.id} name={el.name} />)
+    let dialoguesElements = props.messagePage.dialogueData.map((el) => <DialogueItem id={el.id} name={el.name} />)
 
-    let messageElements = props.messageData.map((el) => <ChatItem message={el.message} />)
+    let messageElements = props.messagePage.messageData.map((el) => <ChatItem message={el.message} />)
 
     let newMessage = React.createRef();
 
@@ -29,7 +29,7 @@ const Messages = (props) => {
             <div className={MessagesCSS.chat}>
                 {messageElements}
 
-                <textarea ref={ newMessage } value={ props.currentMessage.text} onChange={ onMessageChange }></textarea>
+                <textarea ref={ newMessage } value={ props.messagePage.currentMessage.text} onChange={ onMessageChange }></textarea>
                 <button onClick={ onAddMessage }>Send</button>
             </div>
 

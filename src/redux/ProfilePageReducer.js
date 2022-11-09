@@ -30,25 +30,32 @@ export const profilePageReducer = (state = initial_state, action) => {
 
     switch (action.type){
         case(ADD_POST): {
-            state.postData.push({
-                id: 5,
+
+            let stateCopy = {...state};
+            stateCopy.postData = [...state.postData]
+
+            stateCopy.postData.push({
+                id: state.postData.at(-1).id+1,
                 name: "Polina",
                 text: state.currentPost.text,
                 likes: 0
             });
 
-            state.currentPost = {
+            stateCopy.currentPost = {
                 text: "",
             };
 
-            break;
+            return stateCopy;
         }
 
         case(EDIT_CURRENT_POST):{
-            state.currentPost = {
+
+            let stateCopy = {...state};
+
+            stateCopy.currentPost = {
                 text: action.currentText,
             };
-            break;
+            return stateCopy;
         }
 
         default:{
@@ -56,6 +63,4 @@ export const profilePageReducer = (state = initial_state, action) => {
         }
 
     }
-
-    return (state)
 }

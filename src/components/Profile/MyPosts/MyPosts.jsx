@@ -5,7 +5,7 @@ import React from 'react'
 const MyPosts = (props) => {
 
 
-    let postElements = props.postData.map(el => <Post text={el.text} likes={el.likes} name={el.name}/>);
+    let postElements = props.profilePage.postData.map(el => <Post text={el.text} likes={el.likes} name={el.name}/>);
 
     let newPostElement = React.createRef();
 
@@ -24,7 +24,7 @@ const MyPosts = (props) => {
 
                 <div>
                     <h4>New Post</h4>
-                    <textarea ref={newPostElement} value={props.currentPost.text} onChange={ onPostChange }/>
+                    <textarea ref={newPostElement} value={props.profilePage.currentPost.text} onChange={ onPostChange }/>
                     <button onClick={ onAddPost }>Post</button>
                 </div>
 
