@@ -2,22 +2,21 @@ import MessagesCSS from './Messages.module.css';
 import DialogueItem from "./DialogueItem/DialogueItem";
 import ChatItem from "./ChatItem/ChatItem";
 import React from "react";
-import {addMessageActionCreator, onMessageChangeActionCreator} from "../../redux/MessagePageReducer";
 
 const Messages = (props) => {
 
-    let dialoguesElements = props.messagePage.dialogueData.map((el) => <DialogueItem id={el.id} name={el.name} />)
+    let dialoguesElements = props.dialogueData.map((el) => <DialogueItem id={el.id} name={el.name} />)
 
-    let messageElements = props.messagePage.messageData.map((el) => <ChatItem message={el.message} />)
+    let messageElements = props.messageData.map((el) => <ChatItem message={el.message} />)
 
     let newMessage = React.createRef();
 
     let onMessageChange = () => {
-        props.dispatch(onMessageChangeActionCreator(newMessage.current.value));
+        props.messageChange(newMessage.current.value);
     }
 
-    let addMessage = () => {
-        props.dispatch(addMessageActionCreator())
+    let onAddMessage = () => {
+        props.addMessage();
     }
 
     return (
@@ -30,8 +29,8 @@ const Messages = (props) => {
             <div className={MessagesCSS.chat}>
                 {messageElements}
 
-                <textarea ref={ newMessage } value={ props.messagePage.currentMessage.text} onChange={ onMessageChange }></textarea>
-                <button onClick={ addMessage }>Send</button>
+                <textarea ref={ newMessage } value={ props.currentMessage.text} onChange={ onMessageChange }></textarea>
+                <button onClick={ onAddMessage }>Send</button>
             </div>
 
         </div>

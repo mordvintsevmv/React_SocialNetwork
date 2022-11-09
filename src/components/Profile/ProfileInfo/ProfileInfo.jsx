@@ -1,6 +1,6 @@
 import ProfileInfoCSS from "./ProfileInfo.module.css";
 
-const ProfileInfo = (props) => {
+const ProfileInfo = () => {
     return (
         <div className={ProfileInfoCSS.info_wrapper}>
 

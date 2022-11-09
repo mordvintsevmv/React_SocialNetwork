@@ -9,11 +9,10 @@ import {store} from "./redux/reduxStore";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let rerenderAllTree = (state) => {
-    debugger;
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)}/>
+                <App state={state} store={store}/>
             </BrowserRouter>
         </React.StrictMode>
     );
