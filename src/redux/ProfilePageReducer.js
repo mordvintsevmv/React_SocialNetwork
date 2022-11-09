@@ -28,16 +28,19 @@ let initial_state = {
 
 export const profilePageReducer = (state = initial_state, action) => {
 
+
     switch (action.type){
         case(ADD_POST): {
 
-            let stateCopy = {...state};
-            stateCopy.postData = [...state.postData]
+            let stateCopy = {
+                ...state,
+                postData: [...state.postData]
+            };
 
             stateCopy.postData.push({
-                id: state.postData.at(-1).id+1,
+                id: stateCopy.postData.at(-1).id+1,
                 name: "Polina",
-                text: state.currentPost.text,
+                text: stateCopy.currentPost.text,
                 likes: 0
             });
 
@@ -50,11 +53,13 @@ export const profilePageReducer = (state = initial_state, action) => {
 
         case(EDIT_CURRENT_POST):{
 
-            let stateCopy = {...state};
-
-            stateCopy.currentPost = {
-                text: action.currentText,
+            let stateCopy = {
+                ...state,
+                currentPost: {
+                    text:action.currentText
+                }
             };
+
             return stateCopy;
         }
 

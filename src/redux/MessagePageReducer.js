@@ -38,16 +38,21 @@ let initial_state = {
 
 export const messagePageReducer = (state = initial_state, action) => {
 
+
+
+
     switch (action.type){
 
         case(ADD_MESSAGE):{
 
-            let stateCopy = {...state}
-            stateCopy.messageData = [...state.messageData]
+            let stateCopy = {
+                ...state,
+                messages: [...state.messageData]};
+
 
             stateCopy.messageData.push({
-                id: state.messageData.at(-1).id+1,
-                message: state.currentMessage.text,
+                id: stateCopy.messageData.at(-1).id+1,
+                message: stateCopy.currentMessage.text,
             });
 
             stateCopy.currentMessage = {
@@ -59,13 +64,13 @@ export const messagePageReducer = (state = initial_state, action) => {
 
         case(EDIT_CURRENT_MESSAGE):{
 
-            let stateCopy = {...state};
-            stateCopy.messageData = [...state.messageData];
+            let stateCopy = {
+                ...state,
+                currentMessage: {
+                    text: action.currentText
+                }
+            };
 
-
-            stateCopy.currentMessage = {
-                text: action.currentText,
-            }
             return stateCopy;
         }
 
