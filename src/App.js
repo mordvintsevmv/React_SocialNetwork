@@ -6,6 +6,7 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
+import UsersContainer from './components/Users/UsersContainer'
 import {Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 
@@ -18,7 +19,6 @@ const App = () => {
 
               <div className="bottom_part">
 
-
                 <Nav />
 
                   <div className="content">
@@ -27,6 +27,7 @@ const App = () => {
 
                           <Route path="/profile/*" element={<Profile />} />
                           <Route path="/messages/*" element={<MessagesContainer />} />
+                          <Route path="/users/*" element={<UsersContainer />} />
                           <Route path="/news/*" element={<News />} />
                           <Route path="/music/*" element={<Music />} />
                           <Route path="/settings/*" element={<Settings />} />
