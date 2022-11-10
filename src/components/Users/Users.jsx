@@ -1,49 +1,7 @@
-import UserItem from "./UserItem/UserItem";
-import axios from "axios";
+import UsersCSS from "./Users.module.css";
 import React from "react";
-import UsersCSS from './Users.module.css'
 
-const Users = (props) => {
-
-    let setUsers = (page=1,count=5) => {
-
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`).then(r => {
-                props.onSetUsers(r.data.items.map(el => {
-                        return ({
-                            ...el,
-                            location: {
-                                country: "USA",
-                                city: "Boston"
-                            },
-                            status: "My description!",
-
-                        })
-
-                    }
-                ), r.data.totalCount, page)
-            })
-    }
-
-    if (props.userPage.users.length === 0){
-        setUsers();
-    }
-
-    let userElement = props.userPage.users.map(
-        (el) => <UserItem
-            key={el.id}
-            id={el.id}
-            name={el.name}
-            status={el.status}
-            smallPhoto={el.photos.small}
-            largePhoto={el.photos.large}
-            followed={el.followed}
-            country={el.location.country}
-            city={el.location.city}
-            onFollow={props.onFollow}
-            onUnfollow={props.onUnfollow}
-        />
-    )
-
+let Users = (props) => {
 
     let pageCount = Math.ceil(props.userPage.totalUsersCount / props.userPage.pageSize)
 
@@ -54,7 +12,7 @@ const Users = (props) => {
         pages.unshift(i)
     }
 
-    if (props.userPage.currentPage > 3){
+    if (props.userPage.currentPage > 3) {
         pages.unshift("...")
         pages.unshift(1);
     }
@@ -64,31 +22,34 @@ const Users = (props) => {
         pages.push(i)
     }
 
-    if (props.userPage.currentPage < (pageCount - 3)){
+    if (props.userPage.currentPage < (pageCount - 3)) {
         pages.push("...")
         pages.push(pageCount);
     }
 
     return (
         <div>
-            {userElement}
+            {props.userElement}
             <div className={UsersCSS.page_buttons}>
                 {
 
-                    pages.map( el =>  {
-                        if (el === "..."){
+                    pages.map(el => {
+                        if (el === "...") {
                             return <span className={UsersCSS.dots}>...</span>
-                        } else{
-                        return <span
-                            onClick={() => {setUsers(el,5)}}
-                            className={
-                            el === props.userPage.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
-                            }
-                        >
+                        } else {
+                            return <span
+                                onClick={() => {
+                                    props.setUsers(el, 5)
+                                }}
+                                className={
+                                    el === props.userPage.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
+                                }
+                            >
                             {el}
                         </span>
-                    }})
-                    }
+                        }
+                    })
+                }
             </div>
         </div>
     )
