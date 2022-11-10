@@ -4,11 +4,14 @@ const SET_USER = "SET_USER"
 
 let initial_state = {
     users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 export const userPageFollowActionCreator = (id) => ({type: FOLLOW, id: id})
 export const userPageUnfollowActionCreator = (id) => ({type: UNFOLLOW, id: id})
-export const userPageSetUserActionCreator = (users) => ({type: SET_USER, users: users})
+export const userPageSetUserActionCreator = (users, totalUsersCount, currentPage) => ({type: SET_USER, users: users, totalUsersCount: totalUsersCount, currentPage: currentPage})
 
 
 export const userPageReducer = (state = initial_state, action) =>{
@@ -48,7 +51,10 @@ export const userPageReducer = (state = initial_state, action) =>{
         {
             let stateCopy = {
                 ...state,
-                users: [...action.users] };
+                users: [...action.users],
+                totalUsersCount: action.totalUsersCount,
+                currentPage: action.currentPage
+            };
 
             return stateCopy
         }

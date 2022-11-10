@@ -1,0 +1,27 @@
+.page_buttons{
+    margin: 0 auto;
+    max-width: 470px;
+}
+
+.page_buttons span{
+    margin: 0 20px;
+    font-size: 16pt;
+}
+
+.inactive_page:hover{
+    cursor: pointer;
+    color: #FE7555;
+}
+
+.inactive_page{
+    color: #847577;
+}
+
+.current_page{
+    font-weight: bold;
+    color: black;
+}
+
+.dots{
+    color: #847577;
+}

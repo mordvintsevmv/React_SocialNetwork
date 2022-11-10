@@ -18,6 +18,7 @@
 
 .item_block .active{
     color: black;
+    font-weight: bold;
 }
 
 .item_block{

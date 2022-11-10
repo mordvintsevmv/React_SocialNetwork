@@ -8,4 +8,5 @@
 
 .dialogue_item .dialogue_active{
     color: black;
+    font-weight: bold;
 }

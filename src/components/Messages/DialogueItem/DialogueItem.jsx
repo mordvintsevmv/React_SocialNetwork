@@ -5,7 +5,7 @@ const DialogueItem = (props) => {
 
     return (
         <div className={DialogueItemCSS.dialogue_item}>
-            <NavLink to={props.id} className = { navData => navData.isActive ? DialogueItemCSS.dialogue_active : DialogueItemCSS.dialogue_inactive }>{props.name}</NavLink>
+            <NavLink to={"/messages/" + props.id} className = { navData => navData.isActive ? DialogueItemCSS.dialogue_active : DialogueItemCSS.dialogue_inactive }>{props.name}</NavLink>
         </div>
     )
 }

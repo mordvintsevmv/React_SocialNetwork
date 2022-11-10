@@ -4,30 +4,38 @@ import UserItem from "./UserItem/UserItem";
 
 class UsersClass extends React.Component {
 
-    constructor(props) {
-        super(props);
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users?count=5').then(r => {
+            this.props.onSetUsers(r.data.items.map(
+                el => {
+                    return ({
+                        ...el,
+                        location: {
+                            country: "USA",
+                            city: "Boston"
+                        },
+                        status: "My description!",
 
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(r => {
-                this.props.onSetUsers(r.data.items.map(
-                    el => {
-                        return ({
-                            ...el,
-                            location: {
-                                country: "USA",
-                                city: "Boston"
-                            },
-                            status: "My description!",
+                    })
 
-                        })
-
-                    }
-                ))
-            })
+                }
+            ))
+        })
     }
+
+
 
     render() {
         return(
             <div>
+                <div>
+                    <span>1</span>
+                    <span>1</span>
+                    <span>1</span>
+                    <span>1</span>
+                    <span>1</span>
+                </div>
+
                 {this.props.userPage.users.map(
                     (el) => <UserItem
                         key={el.id}
@@ -43,6 +51,7 @@ class UsersClass extends React.Component {
                         onUnfollow={this.props.onUnfollow}
                     />
                 )}
+
             </div>
         )
     }
