@@ -4,10 +4,10 @@ import UserItem from "./UserItem/UserItem";
 
 class UsersClass extends React.Component {
 
-    getUsers = () => {
-        if (this.props.userPage.users.length === 0) {
+    constructor(props) {
+        super(props);
 
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(r => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(r => {
                 this.props.onSetUsers(r.data.items.map(
                     el => {
                         return ({
@@ -23,8 +23,6 @@ class UsersClass extends React.Component {
                     }
                 ))
             })
-
-        }
     }
 
     render() {
@@ -45,7 +43,6 @@ class UsersClass extends React.Component {
                         onUnfollow={this.props.onUnfollow}
                     />
                 )}
-                <button onClick={this.getUsers}>Get Users</button>
             </div>
         )
     }
