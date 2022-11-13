@@ -13,17 +13,23 @@ const ProfileAPI = (props) => {
 
     const [profile, setProfile] = useState(INITIAL_STATE);
 
+    const loadProfile = () => {
+
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`).then(r => {
+            setProfile(r.data)
+            props.setProfile(r.data)
+        })
+
+    }
+
     useEffect(() => {
         if (userID){
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`).then(r => {
-                setProfile(r.data)
-                props.setProfile(r.data)
-            });
+            loadProfile();
         } else{
             setProfile(profile)
             props.setProfile(profile)
         }
-    }, [profile, props, userID]);
+    }, []);
 
 
     return (<Profile profile={profile}/>)
