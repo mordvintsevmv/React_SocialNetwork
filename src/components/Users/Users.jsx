@@ -32,10 +32,9 @@ let Users = (props) => {
             {props.userElement}
             <div className={UsersCSS.page_buttons}>
                 {
-
                     pages.map(el => {
                         if (el === "...") {
-                            return <span className={UsersCSS.dots}>...</span>
+                            return <span className={UsersCSS.dots} key={0}>...</span>
                         } else {
                             return <span
                                 onClick={() => {
@@ -44,6 +43,7 @@ let Users = (props) => {
                                 className={
                                     el === props.userPage.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
                                 }
+                                key={el.id}
                             >
                             {el}
                         </span>
