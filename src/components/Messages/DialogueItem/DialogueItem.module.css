@@ -2,11 +2,11 @@
     margin-bottom: 30px;
 }
 
-.dialogue_item a{
+.dialogue_item a {
     text-decoration: none;
 }
 
-.dialogue_item .dialogue_active{
+.dialogue_item .dialogue_active {
     color: black;
     font-weight: bold;
 }

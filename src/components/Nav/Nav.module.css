@@ -1,10 +1,10 @@
-.nav{
+.nav {
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 0 6px -3px;
 }
 
-.item_block a{
+.item_block a {
     text-decoration: none;
     position: absolute;
     color: #847577;
@@ -12,16 +12,16 @@
     transform: translate(0%, -50%);
 }
 
-.item_block a:hover{
+.item_block a:hover {
     color: #FE7555;
 }
 
-.item_block .active{
+.item_block .active {
     color: black;
     font-weight: bold;
 }
 
-.item_block{
+.item_block {
     padding-bottom: 10px;
     width: 180px;
     margin: 10px auto;

@@ -1,16 +1,24 @@
 const ADD_POST = "ADD-POST"
 const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
+const SET_PROFILE = "SET-PROFILE"
 
-export const addPostActionCreator = () => {
+export const addPost = () => {
     return {
         type: ADD_POST
     }
 }
 
-export const onPostChangeActionCreator = (currentText) => {
+export const onPostChange = (currentText) => {
     return {
         type: EDIT_CURRENT_POST,
-        currentText: currentText
+        currentText
+    }
+}
+
+export const setProfile = (profile) => {
+    return {
+        type: SET_PROFILE,
+        profile
     }
 }
 
@@ -23,6 +31,27 @@ let initial_state = {
 
     currentPost: {
         text: "",
+    },
+
+    profile: {
+        userId: null,
+        lookingForAJob: null,
+        lookingForAJobDescription: "My description!",
+        fullName: "Maksim Mordvintsev",
+        contacts: {
+            github: null,
+            vk: null,
+            facebook: null,
+            instagram: null,
+            twitter: null,
+            website: null,
+            youtube: null,
+            mainLink: null
+        },
+        photos: {
+            small: null,
+            large: null
+        }
     }
 }
 
@@ -32,41 +61,43 @@ export const profilePageReducer = (state = initial_state, action) => {
     switch (action.type){
         case(ADD_POST): {
 
-            let stateCopy = {
+            return {
                 ...state,
 
                 postData: [...state.postData,
 
                     {
-                    id: state.postData.at(-1).id+1,
-                    name: "Polina",
-                    text: state.currentPost.text,
-                    likes: 0
+                        id: state.postData.at(-1).id + 1,
+                        name: "Polina",
+                        text: state.currentPost.text,
+                        likes: 0
                     }
 
                 ],
 
                 currentPost:
                     {
-                    text: "",
+                        text: "",
                     }
 
             };
-
-
-            return stateCopy;
         }
 
         case(EDIT_CURRENT_POST):{
 
-            let stateCopy = {
+            return {
                 ...state,
                 currentPost: {
-                    text:action.currentText
+                    text: action.currentText
                 }
             };
+        }
 
-            return stateCopy;
+        case(SET_PROFILE):{
+            return {
+                ...state,
+                profile: {...action.profile}
+            };
         }
 
         default:{

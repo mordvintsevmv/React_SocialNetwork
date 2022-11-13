@@ -1,22 +1,22 @@
-.item img{
+.item img {
     width: 60px;
     height: 60px;
     border-radius: 30px;
 }
 
-.item{
+.item {
     margin: 20px 0;
 }
 
-.like_count{
+.like_count {
     font-size: 7pt;
 }
 
-.avatar{
+.avatar {
     position: absolute;
 }
 
-.post{
+.post {
     position: absolute;
     left: 70px;
     top: 10px;
@@ -26,15 +26,15 @@
     font-size: 14pt;
 }
 
-.text{
+.text {
     font-size: 10pt;
     color: #847577;
 }
 
-.like_dislike{
+.like_dislike {
 }
 
-.post_info{
+.post_info {
     position: relative;
     min-height: 65px;
 }

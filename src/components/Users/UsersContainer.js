@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import {
     onFollow,
-    onUnfollow,
-    onSetUsers,
-    onSetTotalUsersCount,
     onSetCurrentPage,
+    onSetTotalUsersCount,
+    onSetUsers,
     onToggleIsFetching,
+    onUnfollow,
 } from "../../redux/UserPageReducer";
 import axios from "axios";
 import UserItem from "./UserItem/UserItem";
@@ -20,11 +20,12 @@ let UsersAPI = (props) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`).then(r => {
             props.onSetUsers(r.data.items.map(el => {
                 return ({
-                    ...el, location: {
-                        country: "USA", city: "Boston"
-                    }, status: "My description!",
+                        ...el, location: {
+                            country: "USA", city: "Boston"
+                        }, status: "My description!",
 
-                })
+                    }
+                )
 
             }))
             props.onSetTotalUsersCount(r.data.totalCount)
@@ -68,35 +69,6 @@ let mapStateToProps = (state) => {
         userPage: state.userPage,
     })
 }
-
-// let mapDispatchToProps = (dispatch) => {
-//     return ({
-//         onFollow: (id) => {
-//             dispatch(userPageFollowActionCreator(id))
-//         },
-//
-//         onUnfollow: (id) => {
-//             dispatch(userPageUnfollowActionCreator(id))
-//         },
-//
-//         onSetUsers: (users) => {
-//             dispatch(userPageSetUserActionCreator(users))
-//         },
-//
-//         onSetTotalUsersCount: (totalUsersCount) => {
-//             dispatch(userPageSetTotalUsersCountActionCreator(totalUsersCount))
-//         },
-//
-//         onSetCurrentPage: (currentPage) => {
-//             dispatch(userPageSetCurrentPageActionCreator(currentPage))
-//         },
-//
-//         onToggleIsFetching: (isFetching) => {
-//             dispatch(userPageToggleIsFetchingActionCreator(isFetching))
-//         }
-//
-//     })
-// }
 
 let objectDispatchToProps = {
     onFollow,

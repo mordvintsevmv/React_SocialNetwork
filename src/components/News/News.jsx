@@ -1,9 +1,7 @@
 const News = () => {
-    return (
-        <div>
+    return (<div>
             News!
-        </div>
-    )
+        </div>)
 }
 
 export default News;

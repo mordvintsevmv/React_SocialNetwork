@@ -9,6 +9,7 @@
 .avatar {
     margin: 0 auto;
     width: 80px;
+    border-radius: 40px;
 }
 
 .right_wrapper {
@@ -47,8 +48,20 @@
     bottom: 25px;
 }
 
-.full_name {
+.full_name a{
+    text-decoration: none;
+    color: black;
     font-size: 14pt;
+    font-weight: bold;
+}
+
+.full_name a:hover{
+    color: #FE7555;
+}
+
+.avatar img:hover{
+    box-sizing: border-box;
+    border: 3px solid #FE7555;
 }
 
 .status {

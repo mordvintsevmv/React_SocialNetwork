@@ -2,7 +2,7 @@ import './App.css';
 
 import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
@@ -13,35 +13,41 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 const App = () => {
 
     return (
-          <div className='app-wrapper'>
+        <div className='app-wrapper'>
 
-              <Header />
+            <Header/>
 
-              <div className="bottom_part">
+            <div className="bottom_part">
 
-                <Nav />
+                <Nav/>
 
-                  <div className="content">
+                <div className="content">
 
-                      <Routes>
+                    <Routes>
 
-                          <Route path="/profile/*" element={<Profile />} />
-                          <Route path="/messages/*" element={<MessagesContainer />} />
-                          <Route path="/users/*" element={<UsersContainer />} />
-                          <Route path="/news/*" element={<News />} />
-                          <Route path="/music/*" element={<Music />} />
-                          <Route path="/settings/*" element={<Settings />} />
+                        <Route path="/profile" element={<ProfileContainer/>}>
+                            <Route path=":userID" element={<ProfileContainer/>}/>
+                        </Route>
 
-                      </Routes>
+                        <Route path="/messages" element={<MessagesContainer/>}>
+                            <Route path=":dialogueID" element={<MessagesContainer/>}/>
+                        </Route>
 
-                  </div>
+                        <Route path="/users/*" element={<UsersContainer/>}/>
+                        <Route path="/news/*" element={<News/>}/>
+                        <Route path="/music/*" element={<Music/>}/>
+                        <Route path="/settings/*" element={<Settings/>}/>
 
-              </div>
+                    </Routes>
+
+                </div>
+
+            </div>
 
 
-          </div>
+        </div>
 
-  );
+    );
 }
 
 export default App;

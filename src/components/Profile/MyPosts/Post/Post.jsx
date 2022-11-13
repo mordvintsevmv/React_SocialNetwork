@@ -1,13 +1,14 @@
 import PostCSS from './Post.module.css';
+import avatar from '../../../../img/avatar.png'
 
 const Post = (props) => {
-    return(
+    return (
         <div className={PostCSS.item}>
 
             <div className={PostCSS.post_info}>
 
                 <div className={PostCSS.avatar}>
-                    <img src='avatar.png' alt=""/>
+                    <img src={avatar} alt=""/>
                 </div>
 
                 <div className={PostCSS.post}>

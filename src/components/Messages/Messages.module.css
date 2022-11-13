@@ -1,18 +1,18 @@
-.message_wrapper{
+.message_wrapper {
     display: grid;
     grid-template-columns: 2fr 10fr;
 
 }
 
-.dialogues{
+.dialogues {
     padding: 20px;
     border-right: 2px solid black;
 }
 
-.dialogues a{
+.dialogues a {
     color: #847577;
 }
 
-.dialogues a:hover{
+.dialogues a:hover {
     color: #FE7555;
 }

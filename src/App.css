@@ -1,8 +1,8 @@
-.app-wrapper{
+.app-wrapper {
     margin: 0 auto;
 }
 
-.content{
+.content {
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 0 6px -3px;
@@ -10,11 +10,11 @@
 }
 
 
-html{
+html {
     background-color: #F1F1F1;
 }
 
-.bottom_part{
+.bottom_part {
     display: grid;
     width: 1300px;
     margin: 5px auto 0 auto;
