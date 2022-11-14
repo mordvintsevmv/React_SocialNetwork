@@ -2,38 +2,26 @@ import UserItemCSS from './UserItem.module.css'
 import avatar from '../../../img/avatar.png'
 import React from "react";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {serverFollow, serverUnfollow} from "../../../api/api";
 
 const UserItem = (props) => {
 
     let followButton = React.createRef()
 
     let onFollow = () => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, null, {
-            withCredentials: true, headers: {
-                "API-KEY": "33804be5-efc1-4713-806e-e0af1a2925a7"
+        serverFollow(props.id).then(r => {
+            if (r.resultCode === 0) {
+                props.onFollow(props.id);
             }
         })
-            .then(r => {
-                if (r.data.resultCode === 0) {
-                    props.onFollow(props.id);
-                }
-            })
     }
 
     const onUnfollow = () => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {
-            withCredentials: true, headers: {
-                "API-KEY": "33804be5-efc1-4713-806e-e0af1a2925a7"
+        serverUnfollow(props.id).then(r => {
+            if (r.resultCode === 0) {
+                props.onUnfollow(props.id);
             }
         })
-            .then(r => {
-                console.log(r)
-
-                if (r.data.resultCode === 0) {
-                    props.onUnfollow(props.id);
-                }
-            })
     }
 
 

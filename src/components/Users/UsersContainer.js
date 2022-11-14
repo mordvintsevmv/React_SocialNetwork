@@ -7,18 +7,18 @@ import {
     onToggleIsFetching,
     onUnfollow,
 } from "../../redux/UserPageReducer";
-import axios from "axios";
 import UserItem from "./UserItem/UserItem";
 import Users from "./Users";
 import React from "react";
 import loadingGIF from '../../img/1481.gif'
+import {serverGetUsers} from "../../api/api";
 
 let UsersAPI = (props) => {
 
     let setUsers = (page = 1, count = 5) => {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`, {withCredentials: true}).then(r => {
-            props.onSetUsers(r.data.items.map(el => {
+        serverGetUsers(page,count).then(r => {
+            props.onSetUsers(r.items.map(el => {
                 return ({
                         ...el, location: {
                             country: "USA", city: "Boston"
@@ -28,9 +28,8 @@ let UsersAPI = (props) => {
                 )
 
             }))
-            props.onSetTotalUsersCount(r.data.totalCount)
+            props.onSetTotalUsersCount(r.totalCount)
             props.onSetCurrentPage(page)
-
         })
 
 
