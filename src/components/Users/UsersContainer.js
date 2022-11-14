@@ -17,7 +17,7 @@ let UsersAPI = (props) => {
 
     let setUsers = (page = 1, count = 5) => {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`).then(r => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`, {withCredentials: true}).then(r => {
             props.onSetUsers(r.data.items.map(el => {
                 return ({
                         ...el, location: {
@@ -43,6 +43,7 @@ let UsersAPI = (props) => {
     let userElement = props.userPage.users.map((el) => <UserItem
         key={el.id}
         id={el.id}
+        myID={props.myID}
         name={el.name}
         status={el.status}
         smallPhoto={el.photos.small}
@@ -67,6 +68,7 @@ let UsersAPI = (props) => {
 let mapStateToProps = (state) => {
     return ({
         userPage: state.userPage,
+        myID: state.auth.id,
     })
 }
 

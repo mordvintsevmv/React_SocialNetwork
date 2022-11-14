@@ -2,64 +2,80 @@ import UserItemCSS from './UserItem.module.css'
 import avatar from '../../../img/avatar.png'
 import React from "react";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const UserItem = (props) => {
 
     let followButton = React.createRef()
 
-    let onFollowChange = () => {
-        if (followButton.current.value === "false") {
-            props.onFollow(props.id);
-        } else {
-            props.onUnfollow(props.id);
-        }
+    let onFollow = () => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, null, {
+            withCredentials: true, headers: {
+                "API-KEY": "33804be5-efc1-4713-806e-e0af1a2925a7"
+            }
+        })
+            .then(r => {
+                if (r.data.resultCode === 0) {
+                    props.onFollow(props.id);
+                }
+            })
     }
 
-    return (
-        <div className={UserItemCSS.user_item_wrapper}>
+    const onUnfollow = () => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {
+            withCredentials: true, headers: {
+                "API-KEY": "33804be5-efc1-4713-806e-e0af1a2925a7"
+            }
+        })
+            .then(r => {
+                console.log(r)
 
-            <div className={UserItemCSS.left_wrapper}>
-
-                <div className={UserItemCSS.avatar}>
-                    <NavLink to={"/profile/" + props.id}>
-                        <img src={props.smallPhoto != null ? props.smallPhoto : avatar} alt=""/>
-                    </NavLink>
-                </div>
-
-                <div className={UserItemCSS.followed}>
-                    {
-                        props.followed
-                            ?
-                            <button value={props.followed} onClick={onFollowChange} ref={followButton}>Unfollow</button>
-                            : <button value={props.followed} onClick={onFollowChange} ref={followButton}>Follow</button>
-                    }
-
-                </div>
+                if (r.data.resultCode === 0) {
+                    props.onUnfollow(props.id);
+                }
+            })
+    }
 
 
+    return (<div className={UserItemCSS.user_item_wrapper}>
+
+        <div className={UserItemCSS.left_wrapper}>
+
+            <div className={UserItemCSS.avatar}>
+                <NavLink to={"/profile/" + props.id}>
+                    <img src={props.smallPhoto != null ? props.smallPhoto : avatar} alt=""/>
+                </NavLink>
             </div>
 
-            <div className={UserItemCSS.right_wrapper}>
+            <div className={UserItemCSS.followed}>
+                {props.myID === props.id ? null : props.followed ?
+                    <button value={props.followed} onClick={onUnfollow} ref={followButton}>Unfollow</button> :
+                    <button value={props.followed} onClick={onFollow} ref={followButton}>Follow</button>}
+            </div>
 
-                <div className={UserItemCSS.full_name}>
-                    <NavLink to={"/profile/" + props.id}>
-                        {props.name}
-                    </NavLink>
-                </div>
 
-                <div className={UserItemCSS.location}>
-                    {props.country},
-                    {props.city}
-                </div>
+        </div>
 
-                <div className={UserItemCSS.status}>
-                    {props.status}
-                </div>
+        <div className={UserItemCSS.right_wrapper}>
 
+            <div className={UserItemCSS.full_name}>
+                <NavLink to={"/profile/" + props.id}>
+                    {props.name}
+                </NavLink>
+            </div>
+
+            <div className={UserItemCSS.location}>
+                {props.country},
+                {props.city}
+            </div>
+
+            <div className={UserItemCSS.status}>
+                {props.status}
             </div>
 
         </div>
-    )
+
+    </div>)
 }
 
 export default UserItem;

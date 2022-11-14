@@ -19,3 +19,16 @@
     left: 60px;
     top: -8px
 }
+
+.auth_block {
+    position: absolute;
+    float: right;
+    top: 12px;
+    right:15px;
+}
+
+.login_button{
+    text-decoration: none;
+    color: white;
+    font-size: 14pt;
+}

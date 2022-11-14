@@ -1,6 +1,6 @@
 import './App.css';
 
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Nav from './components/Nav/Nav';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import News from './components/News/News'
@@ -12,10 +12,9 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 
 const App = () => {
 
-    return (
-        <div className='app-wrapper'>
+    return (<div className='app-wrapper'>
 
-            <Header/>
+            <HeaderContainer/>
 
             <div className="bottom_part">
 
