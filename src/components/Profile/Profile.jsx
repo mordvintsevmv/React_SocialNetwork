@@ -17,7 +17,7 @@ const Profile = (props) => {
     }, []);
 
     return (<div className={ProfileCSS.profile_wrapper}>
-        <ProfileInfo profile={props.profilePage.profile}/>
+        <ProfileInfo profile={props.profilePage.profile} myID={props.myID}/>
         <MyPostsContainer/>
     </div>);
 }

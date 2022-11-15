@@ -4,6 +4,7 @@ import avatar from '../../../img/avatar.png'
 import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
+
     return (<div className={ProfileInfoCSS.info_wrapper}>
 
         <div className={ProfileInfoCSS.back}>
@@ -15,7 +16,7 @@ const ProfileInfo = (props) => {
                  src={props.profile.photos.small ? props.profile.photos.small : avatar} alt=""/>
             <div className={ProfileInfoCSS.text_info}>
                 <div className={ProfileInfoCSS.name}>{props.profile.fullName}</div>
-                <ProfileStatus lookingForAJobDescription={props.profile.lookingForAJobDescription}/>
+                <ProfileStatus lookingForAJobDescription={props.profile.lookingForAJobDescription} myID={props.myID} id={props.profile.userId}/>
             </div>
         </div>
 
