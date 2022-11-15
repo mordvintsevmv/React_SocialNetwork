@@ -53,6 +53,7 @@ export const getUsers = (currentPage, pageSize) => {
 
 
             dispatch(onSetUsers(r.items.map(el => {
+                console.log(el)
                 return ({
                     ...el, location: {
                         country: "USA", city: "Boston"

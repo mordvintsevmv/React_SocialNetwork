@@ -6,7 +6,8 @@ import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return ({
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+        myID: state.auth.id
     })
 }
 

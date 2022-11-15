@@ -11,7 +11,7 @@ const UserItem = (props) => {
 
             <div className={UserItemCSS.avatar}>
                 <NavLink to={"/profile/" + props.user.id}>
-                    <img src={props.user.photos.smallPhoto != null ? props.user.photos.smallPhoto : avatar} alt=""/>
+                    <img src={props.user.photos.small === null ? avatar : props.user.photos.small} alt=""/>
                 </NavLink>
             </div>
 

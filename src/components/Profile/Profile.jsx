@@ -11,6 +11,8 @@ const Profile = (props) => {
     useEffect(() => {
         if (userID) {
             props.loadProfile(userID);
+        } else{
+            props.loadProfile(props.myID)
         }
     }, []);
 

@@ -19,8 +19,8 @@ let initial_state = {
     profile: {
         userId: null,
         lookingForAJob: null,
-        lookingForAJobDescription: "My description!",
-        fullName: "Maksim Mordvintsev",
+        lookingForAJobDescription: null,
+        fullName: null,
         contacts: {
             github: null,
             vk: null,

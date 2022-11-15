@@ -1,6 +1,7 @@
 import ProfileInfoCSS from "./ProfileInfo.module.css";
 import forest from '../../../img/forest.jpg'
 import avatar from '../../../img/avatar.png'
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     return (<div className={ProfileInfoCSS.info_wrapper}>
@@ -14,7 +15,7 @@ const ProfileInfo = (props) => {
                  src={props.profile.photos.small ? props.profile.photos.small : avatar} alt=""/>
             <div className={ProfileInfoCSS.text_info}>
                 <div className={ProfileInfoCSS.name}>{props.profile.fullName}</div>
-                <div className={ProfileInfoCSS.description}>{props.profile.lookingForAJobDescription}</div>
+                <ProfileStatus lookingForAJobDescription={props.profile.lookingForAJobDescription}/>
             </div>
         </div>
 
