@@ -6,8 +6,7 @@ const instance = axios.create({
     }
 })
 export const serverGetUsers = (page, count) => {
-    return instance.get(`users?page=${page}&count=${count}`)
-        .then(r => r.data)
+    return instance.get(`users?page=${page}&count=${count}`).then(r => r.data)
 }
 
 export const serverFollow = (id) => {
@@ -19,6 +18,5 @@ export const serverUnfollow = (id) => {
 }
 
 export const serverCheckAuth = () => {
-    return instance.get(`auth/me`)
-        .then(r => r.data)
+    return instance.get(`auth/me`).then(r => r.data)
 }

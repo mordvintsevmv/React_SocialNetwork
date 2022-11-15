@@ -1,19 +1,8 @@
-const ADD_MESSAGE = "ADD-MESSAGE"
-const EDIT_CURRENT_MESSAGE = "EDIT-CURRENT-MESSAGE"
+/*
 
-export const addMessageActionCreator = () => {
-    return {
-        type: ADD_MESSAGE
-    }
-}
+    INITIAL STATE
 
-export const onMessageChangeActionCreator = (currentText) => {
-    return {
-        type: EDIT_CURRENT_MESSAGE,
-        currentText: currentText
-    }
-}
-
+ */
 let initial_state = {
     messageData: [
         {id: 1, message: "Hi!"},
@@ -36,6 +25,48 @@ let initial_state = {
     }
 }
 
+
+/*
+
+    ACTION TYPES
+
+ */
+const ADD_MESSAGE = "ADD-MESSAGE"
+const EDIT_CURRENT_MESSAGE = "EDIT-CURRENT-MESSAGE"
+
+
+/*
+
+    ACTION CREATORS
+
+ */
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const onMessageChangeActionCreator = (currentText) => {
+    return {
+        type: EDIT_CURRENT_MESSAGE,
+        currentText: currentText
+    }
+}
+
+
+/*
+
+    THUNK
+
+ */
+
+
+
+/*
+
+    REDUCER
+
+ */
 export const messagePageReducer = (state = initial_state, action) => {
 
 

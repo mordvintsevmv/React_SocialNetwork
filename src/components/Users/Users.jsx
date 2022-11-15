@@ -9,22 +9,22 @@ let Users = (props) => {
 
     for (let i = props.userPage.currentPage; i > props.userPage.currentPage - 3; i--) {
         if (i < 1) break
-        pages.unshift(i)
+        pages.unshift({el:i,key:i})
     }
 
     if (props.userPage.currentPage > 3) {
-        pages.unshift("...")
-        pages.unshift(1);
+        pages.unshift({el:"...",key:"left"})
+        pages.unshift({el:1,key:1});
     }
 
     for (let i = props.userPage.currentPage + 1; i < props.userPage.currentPage + 3; i++) {
         if (i > pageCount) break
-        pages.push(i)
+        pages.push({el:i,key:i})
     }
 
     if (props.userPage.currentPage < (pageCount - 3)) {
-        pages.push("...")
-        pages.push(pageCount);
+        pages.push({el:"...",key:"right"})
+        pages.push({el:pageCount,key:pageCount});
     }
 
     return (
@@ -32,20 +32,20 @@ let Users = (props) => {
             {props.userElement}
             <div className={UsersCSS.page_buttons}>
                 {
-                    pages.map(el => {
-                        if (el === "...") {
-                            return <span className={UsersCSS.dots} key={0}>...</span>
+                    pages.map(p => {
+                        if (p.el === "...") {
+                            return <span className={UsersCSS.dots} key={p.key}>...</span>
                         } else {
                             return <span
                                 onClick={() => {
-                                    props.setUsers(el, 5)
+                                    props.setUsers(p.el, 5)
                                 }}
                                 className={
-                                    el === props.userPage.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
+                                    p.el === props.userPage.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
                                 }
-                                key={el.id}
+                                key={p.key}
                             >
-                            {el}
+                            {p.el}
                         </span>
                         }
                     })

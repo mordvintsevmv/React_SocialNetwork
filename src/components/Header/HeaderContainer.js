@@ -17,8 +17,7 @@ const HeaderAPI = (props) => {
 
     useEffect(() => {
         loadAuth();
-    }, [loadAuth])
-
+    }, [])
 
     return (<Header {...props}/>)
 }

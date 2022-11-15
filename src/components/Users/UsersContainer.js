@@ -1,65 +1,34 @@
 import {connect} from "react-redux";
-import {
-    onFollow,
-    onSetCurrentPage,
-    onSetTotalUsersCount,
-    onSetUsers,
-    onToggleIsFetching,
-    onUnfollow,
-} from "../../redux/UserPageReducer";
+import {follow, getUsers, unfollow} from "../../redux/UserPageReducer";
 import UserItem from "./UserItem/UserItem";
 import Users from "./Users";
 import React from "react";
 import loadingGIF from '../../img/1481.gif'
-import {serverGetUsers} from "../../api/api";
 
 let UsersAPI = (props) => {
 
-    let setUsers = (page = 1, count = 5) => {
-
-        serverGetUsers(page,count).then(r => {
-            props.onSetUsers(r.items.map(el => {
-                return ({
-                        ...el, location: {
-                            country: "USA", city: "Boston"
-                        }, status: "My description!",
-
-                    }
-                )
-
-            }))
-            props.onSetTotalUsersCount(r.totalCount)
-            props.onSetCurrentPage(page)
-        })
-
-
-    }
-
     if (props.userPage.totalUsersCount === 0) {
-        setUsers();
+        props.getUsers(1, 5)
     }
 
-    let userElement = props.userPage.users.map((el) => <UserItem
-        key={el.id}
-        id={el.id}
-        myID={props.myID}
-        name={el.name}
-        status={el.status}
-        smallPhoto={el.photos.small}
-        largePhoto={el.photos.large}
-        followed={el.followed}
-        country={el.location.country}
-        city={el.location.city}
-        onFollow={props.onFollow}
-        onUnfollow={props.onUnfollow}
-    />)
+    const userElement = props.userPage.users.map((user) => {
+
+        return <UserItem
+            user={user}
+            key={user.id}
+            myID={props.myID}
+            follow={props.follow}
+            unfollow={props.unfollow}
+            isFollowingProgress={props.isFollowingProgress}
+        />
+    })
 
     return (
         <>
             {
                 props.userPage.isFetching ? <img src={loadingGIF} alt=""/> : null
             }
-            <Users userElement={userElement} userPage={props.userPage} setUsers={setUsers}/>
+            <Users userElement={userElement} userPage={props.userPage} setUsers={props.getUsers}/>
         </>
     )
 }
@@ -67,17 +36,15 @@ let UsersAPI = (props) => {
 let mapStateToProps = (state) => {
     return ({
         userPage: state.userPage,
+        isFollowingProgress: state.userPage.isFollowingProgress,
         myID: state.auth.id,
     })
 }
 
 let objectDispatchToProps = {
-    onFollow,
-    onUnfollow,
-    onSetUsers,
-    onSetTotalUsersCount,
-    onSetCurrentPage,
-    onToggleIsFetching,
+    follow,
+    unfollow,
+    getUsers
 }
 
 const UsersContainer = connect(mapStateToProps, objectDispatchToProps)(UsersAPI);

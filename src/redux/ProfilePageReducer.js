@@ -1,27 +1,8 @@
-const ADD_POST = "ADD-POST"
-const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
-const SET_PROFILE = "SET-PROFILE"
+/*
 
-export const addPost = () => {
-    return {
-        type: ADD_POST
-    }
-}
+    INITIAL STATE
 
-export const onPostChange = (currentText) => {
-    return {
-        type: EDIT_CURRENT_POST,
-        currentText
-    }
-}
-
-export const setProfile = (profile) => {
-    return {
-        type: SET_PROFILE,
-        profile
-    }
-}
-
+ */
 let initial_state = {
     postData: [
         {id: 1, name: "Maksim", text: "First post", likes: 5},
@@ -55,6 +36,56 @@ let initial_state = {
     }
 }
 
+
+/*
+
+    ACTION TYPES
+
+ */
+const ADD_POST = "ADD-POST"
+const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
+const SET_PROFILE = "SET-PROFILE"
+
+
+/*
+
+    ACTION CREATORS
+
+ */
+export const addPost = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const onPostChange = (currentText) => {
+    return {
+        type: EDIT_CURRENT_POST,
+        currentText
+    }
+}
+
+export const setProfile = (profile) => {
+    return {
+        type: SET_PROFILE,
+        profile
+    }
+}
+
+
+/*
+
+    THUNK
+
+ */
+
+
+
+/*
+
+    REDUCER
+
+ */
 export const profilePageReducer = (state = initial_state, action) => {
 
 
