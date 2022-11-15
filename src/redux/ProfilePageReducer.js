@@ -3,6 +3,8 @@
     INITIAL STATE
 
  */
+import {serverLoadProfile} from "../api/api";
+
 let initial_state = {
     postData: [
         {id: 1, name: "Maksim", text: "First post", likes: 5},
@@ -78,7 +80,14 @@ export const setProfile = (profile) => {
     THUNK
 
  */
+export const loadProfile = (userID) =>{
+    return (dispatch) => {
+        serverLoadProfile(userID).then(r => {
+            dispatch(setProfile(r))
+        })
 
+    }
+}
 
 
 /*

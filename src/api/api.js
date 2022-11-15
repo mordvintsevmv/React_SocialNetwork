@@ -9,14 +9,18 @@ export const serverGetUsers = (page, count) => {
     return instance.get(`users?page=${page}&count=${count}`).then(r => r.data)
 }
 
-export const serverFollow = (id) => {
-    return instance.post(`follow/${id}`).then(r => r.data)
+export const serverFollow = (userID) => {
+    return instance.post(`follow/${userID}`).then(r => r.data)
 }
 
-export const serverUnfollow = (id) => {
-    return instance.delete(`follow/${id}`).then(r => r.data)
+export const serverUnfollow = (userID) => {
+    return instance.delete(`follow/${userID}`).then(r => r.data)
 }
 
 export const serverCheckAuth = () => {
     return instance.get(`auth/me`).then(r => r.data)
+}
+
+export const serverLoadProfile = (userID) => {
+    return instance.get(`profile/${userID}`).then(r => r.data)
 }
