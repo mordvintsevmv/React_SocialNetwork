@@ -1,16 +1,6 @@
 import {connect} from "react-redux";
-import Header from "./Header";
-import {useEffect} from "react";
 import {checkAuth} from "../../redux/authReducer";
-
-const HeaderAPI = (props) => {
-
-    useEffect(() => {
-        props.checkAuth();
-    }, [])
-
-    return (<Header {...props}/>)
-}
+import Header from "./Header";
 
 const mapStateToProps = (state) => {
     return {
@@ -22,6 +12,6 @@ const objectDispatchToProps = {
     checkAuth,
 }
 
-const HeaderContainer = connect(mapStateToProps, objectDispatchToProps)(HeaderAPI);
+const HeaderContainer = connect(mapStateToProps, objectDispatchToProps)(Header);
 
 export default HeaderContainer;

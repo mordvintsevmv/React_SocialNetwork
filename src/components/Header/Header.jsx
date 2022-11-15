@@ -1,8 +1,14 @@
 import HeaderCSS from './Header.module.css';
 import logoMonkey from '../../img/logoMonkey.ico'
 import {NavLink} from "react-router-dom";
+import {useEffect} from "react";
 
 const Header = (props) => {
+
+    useEffect(() => {
+        props.checkAuth();
+    }, [])
+
     return (<header className={HeaderCSS.header}>
             <div className={HeaderCSS.title_block}>
                 <a href="/"><img src={logoMonkey} alt='monkey'/></a>
