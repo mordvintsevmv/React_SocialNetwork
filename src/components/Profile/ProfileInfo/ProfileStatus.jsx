@@ -1,31 +1,47 @@
 import ProfileInfoCSS from './ProfileInfo.module.css'
 import React from "react";
 
-class ProfileStatus extends React.Component{
+class ProfileStatus extends React.Component {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
-    toggleEditMode = () => {
+    onStatusChange = (e) => {
         this.setState({
-            editMode: !this.state.editMode
+            status: e.currentTarget.value
         })
     }
 
-    render(){
+    activateEditMode = () => {
+        this.setState({
+            editMode: true,
+            status: this.props.status,
+        })
+    }
+
+    deactivateEditMode = () => {
+        this.setState({
+            editMode: false,
+        })
+        this.props.updateStatus(this.state.status);
+    }
+
+    render() {
         return (<>
                 {(!this.state.editMode || (this.props.myID !== this.props.id)) &&
                     <div className={ProfileInfoCSS.description}>
-                        <span onDoubleClick={this.toggleEditMode}>
-                            {this.props.lookingForAJobDescription === null ? "Empty description" : this.props.lookingForAJobDescription}
+                        <span onDoubleClick={this.activateEditMode}>
+                            {this.props.status === null ? "" : this.props.status}
                         </span>
                     </div>
                 }
 
                 {this.state.editMode && (this.props.myID === this.props.id) &&
                     <div className={ProfileInfoCSS.description}>
-                        <input autoFocus={true} onBlur={this.toggleEditMode} value={this.props.lookingForAJobDescription === null ? "Empty description" : this.props.lookingForAJobDescription}/>
+                        <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}
+                               value={this.state.status === null ? "" : this.state.status}/>
                     </div>
                 }
             </>

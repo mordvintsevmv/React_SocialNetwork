@@ -3,7 +3,7 @@
     INITIAL STATE
 
  */
-import {serverLoadProfile} from "../api/api";
+import {serverLoadProfile, serverLoadStatus, serverUpdateStatus} from "../api/api";
 
 let initial_state = {
     postData: [
@@ -17,9 +17,11 @@ let initial_state = {
     },
 
     profile: {
+        aboutMe: null,
         userId: null,
         lookingForAJob: null,
         lookingForAJobDescription: null,
+        status: null,
         fullName: null,
         contacts: {
             github: null,
@@ -44,9 +46,10 @@ let initial_state = {
     ACTION TYPES
 
  */
-const ADD_POST = "ADD-POST"
-const EDIT_CURRENT_POST = "EDIT-CURRENT-POST"
-const SET_PROFILE = "SET-PROFILE"
+const ADD_POST = "ADD_POST"
+const EDIT_CURRENT_POST = "EDIT_CURRENT_POST"
+const SET_PROFILE = "SET_PROFILE"
+const SET_STATUS = "SET_STATUS"
 
 
 /*
@@ -74,13 +77,20 @@ export const setProfile = (profile) => {
     }
 }
 
+export const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
+
 
 /*
 
     THUNK
 
  */
-export const loadProfile = (userID) =>{
+export const loadProfile = (userID) => {
     return (dispatch) => {
         serverLoadProfile(userID).then(r => {
             dispatch(setProfile(r))
@@ -89,6 +99,24 @@ export const loadProfile = (userID) =>{
     }
 }
 
+export const loadStatus = (userID) => {
+    return (dispatch) => {
+        serverLoadStatus(userID).then(r => {
+            dispatch(setStatus(r))
+        })
+    }
+}
+
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        serverUpdateStatus(status).then(r => {
+            if (r.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+            }
+        )
+    }
+}
 
 /*
 
@@ -98,7 +126,7 @@ export const loadProfile = (userID) =>{
 export const profilePageReducer = (state = initial_state, action) => {
 
 
-    switch (action.type){
+    switch (action.type) {
         case(ADD_POST): {
 
             return {
@@ -123,7 +151,7 @@ export const profilePageReducer = (state = initial_state, action) => {
             };
         }
 
-        case(EDIT_CURRENT_POST):{
+        case(EDIT_CURRENT_POST): {
 
             return {
                 ...state,
@@ -133,14 +161,27 @@ export const profilePageReducer = (state = initial_state, action) => {
             };
         }
 
-        case(SET_PROFILE):{
+        case(SET_PROFILE): {
             return {
                 ...state,
-                profile: {...action.profile}
+                profile: {
+                    ...state.profile,
+                    ...action.profile
+                }
             };
         }
 
-        default:{
+        case(SET_STATUS): {
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    status: action.status
+                }
+            }
+        }
+
+        default: {
             return state;
         }
 

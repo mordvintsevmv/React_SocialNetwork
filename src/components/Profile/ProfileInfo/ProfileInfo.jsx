@@ -16,7 +16,7 @@ const ProfileInfo = (props) => {
                  src={props.profile.photos.small ? props.profile.photos.small : avatar} alt=""/>
             <div className={ProfileInfoCSS.text_info}>
                 <div className={ProfileInfoCSS.name}>{props.profile.fullName}</div>
-                <ProfileStatus lookingForAJobDescription={props.profile.lookingForAJobDescription} myID={props.myID} id={props.profile.userId}/>
+                <ProfileStatus lookingForAJobDescription={props.profile.lookingForAJobDescription} status={props.profile.status} myID={props.myID} id={props.profile.userId} updateStatus={props.updateStatus}/>
             </div>
         </div>
 

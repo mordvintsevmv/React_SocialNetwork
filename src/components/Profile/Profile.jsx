@@ -11,13 +11,15 @@ const Profile = (props) => {
     useEffect(() => {
         if (userID) {
             props.loadProfile(userID);
+            props.loadStatus(userID);
         } else{
             props.loadProfile(props.myID)
+            props.loadStatus(props.myID);
         }
     }, []);
 
     return (<div className={ProfileCSS.profile_wrapper}>
-        <ProfileInfo profile={props.profilePage.profile} myID={props.myID}/>
+        <ProfileInfo profile={props.profilePage.profile} myID={props.myID} updateStatus={props.updateStatus}/>
         <MyPostsContainer/>
     </div>);
 }

@@ -29,3 +29,18 @@ export const serverLoadProfile = (userID) => {
     console.log("serverLoadProfile")
     return instance.get(`profile/${userID}`).then(r => r.data)
 }
+
+export const serverLoadStatus = (userID) => {
+    console.log("serverLoadStatus")
+    return instance.get(`profile/status/${userID}`).then(r => r.data)
+}
+
+export const serverUploadPhoto = (image) => {
+    console.log("serverUploadPhoto")
+    return instance.put(`profile/photo`, {image}).then(r => r.data)
+}
+
+export const serverUpdateStatus = (status) => {
+    console.log("serverUpdateStatus")
+    return instance.put(`profile/status`, {status}).then(r => r.data)
+}
