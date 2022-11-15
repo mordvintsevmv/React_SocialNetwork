@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import {follow, getUsers, unfollow} from "../../redux/UserPageReducer";
 import Users from "./Users";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return ({
@@ -16,6 +17,4 @@ let objectDispatchToProps = {
     getUsers
 }
 
-const UsersContainer = connect(mapStateToProps, objectDispatchToProps)(Users);
-
-export default UsersContainer;
+export default compose(connect(mapStateToProps, objectDispatchToProps))(Users);
