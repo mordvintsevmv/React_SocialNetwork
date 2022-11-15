@@ -5,7 +5,7 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state) => {
     return ({
-        profilePage: state.profilePage, isAuth: state.auth.isAuth
+        profilePage: state.profilePage
     })
 }
 
