@@ -1,22 +1,12 @@
 import {connect} from "react-redux";
 import Header from "./Header";
 import {useEffect} from "react";
-import {setUserData} from "../../redux/authReducer";
-import {serverCheckAuth} from "../../api/api";
+import {checkAuth} from "../../redux/authReducer";
 
 const HeaderAPI = (props) => {
 
-    const loadAuth = () => {
-
-        serverCheckAuth().then(r => {
-            if (r.resultCode === 0) {
-                props.setUserData(r.data.id, r.data.email, r.data.login);
-            }
-        })
-    }
-
     useEffect(() => {
-        loadAuth();
+        props.checkAuth();
     }, [])
 
     return (<Header {...props}/>)
@@ -28,10 +18,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {
-    setUserData,
+const objectDispatchToProps = {
+    checkAuth,
 }
 
-const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderAPI);
+const HeaderContainer = connect(mapStateToProps, objectDispatchToProps)(HeaderAPI);
 
 export default HeaderContainer;

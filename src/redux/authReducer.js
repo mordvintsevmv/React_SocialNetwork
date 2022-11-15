@@ -3,6 +3,8 @@
     INITIAL STATE
 
  */
+import {serverCheckAuth} from "../api/api";
+
 const initial_state = {
     id: null, email: null, login: null, isAuth: false
 }
@@ -34,6 +36,16 @@ export const setUserData = (id, email, login) => {
     THUNK
 
  */
+export const checkAuth = () =>{
+    return (dispatch) => {
+        serverCheckAuth().then(r => {
+            if (r.resultCode === 0) {
+                dispatch(setUserData(r.data.id, r.data.email, r.data.login));
+            }
+        })
+
+    }
+}
 
 
 /*
