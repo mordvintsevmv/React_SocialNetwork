@@ -40,13 +40,13 @@ const EDIT_CURRENT_MESSAGE = "EDIT-CURRENT-MESSAGE"
     ACTION CREATORS
 
  */
-export const addMessageActionCreator = () => {
+export const addMessage = () => {
     return {
         type: ADD_MESSAGE
     }
 }
 
-export const onMessageChangeActionCreator = (currentText) => {
+export const changeMessage = (currentText) => {
     return {
         type: EDIT_CURRENT_MESSAGE,
         currentText: currentText

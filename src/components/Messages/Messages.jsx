@@ -12,8 +12,8 @@ const Messages = (props) => {
 
     let newMessage = React.createRef();
 
-    let onMessageChange = () => {
-        props.messageChange(newMessage.current.value);
+    let onChangeMessage = () => {
+        props.changeMessage(newMessage.current.value);
     }
 
     let onAddMessage = () => {
@@ -30,7 +30,7 @@ const Messages = (props) => {
             {messageElements}
 
             <textarea ref={newMessage} value={props.messagePage.currentMessage.text}
-                      onChange={onMessageChange}></textarea>
+                      onChange={onChangeMessage}></textarea>
             <button onClick={onAddMessage}>Send</button>
         </div>
 
