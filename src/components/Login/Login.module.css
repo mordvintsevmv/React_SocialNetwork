@@ -1,0 +1,23 @@
+.page_name{
+    margin: 10px 10px
+}
+
+.form_wrapper form div{
+    margin: 10px 0;
+}
+
+input{
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid #847577;
+;}
+
+.error_form input{
+    border: 1px solid #FE7555;
+    border-radius: 5px;
+}
+
+.error_message{
+    font-size: 9pt;
+    color: #847577;
+}

@@ -1,20 +1,11 @@
 import MyPostsCSS from './MyPosts.module.css';
 import Post from'./Post/Post';
 import React from 'react'
+import {Field, Formik, Form} from "formik";
 
 const MyPosts = (props) => {
 
     let postElements = props.profilePage.postData.map(el => <Post text={el.text} key={el.id} likes={el.likes} name={el.name}/>);
-
-    let newPostElement = React.createRef();
-
-    let onPostChange = () => {
-        props.onPostChange(newPostElement.current.value);
-    }
-
-    let onAddPost = () => {
-        props.addPost();
-    }
 
     return(
             <div className={MyPostsCSS.post_wrapper}>
@@ -23,8 +14,16 @@ const MyPosts = (props) => {
 
                 <div>
                     <h4>New Post</h4>
-                    <textarea ref={newPostElement} value={props.profilePage.currentPost.text} onChange={onPostChange}/>
-                    <button onClick={onAddPost}>Post</button>
+
+                    <Formik initialValues={{post:""}} onSubmit={(values,{resetForm}) =>{
+                        props.addPost(values);
+                        resetForm({})
+                    }}>
+                        <Form>
+                            <Field type={"text"} name={"post"} placeholder={"Your post"}></Field>
+                            <button type={'submit'}>Post</button>
+                        </Form>
+                    </Formik>
                 </div>
 
                 <div>

@@ -2,6 +2,8 @@ import MessagesCSS from './Messages.module.css';
 import DialogueItem from "./DialogueItem/DialogueItem";
 import ChatItem from "./ChatItem/ChatItem";
 import React from "react";
+import {Field, Form, Formik} from "formik";
+
 
 const Messages = (props) => {
 
@@ -9,16 +11,6 @@ const Messages = (props) => {
                                                                                      name={el.name}/>)
 
     let messageElements = props.messagePage.messageData.map((el) => <ChatItem key={el.id} message={el.message}/>)
-
-    let newMessage = React.createRef();
-
-    let onChangeMessage = () => {
-        props.changeMessage(newMessage.current.value);
-    }
-
-    let onAddMessage = () => {
-        props.addMessage();
-    }
 
     return (<div className={MessagesCSS.message_wrapper}>
 
@@ -29,9 +21,22 @@ const Messages = (props) => {
         <div className={MessagesCSS.chat}>
             {messageElements}
 
-            <textarea ref={newMessage} value={props.messagePage.currentMessage.text}
-                      onChange={onChangeMessage}></textarea>
-            <button onClick={onAddMessage}>Send</button>
+            <div className={MessagesCSS.form_wrapper}>
+
+                <Formik initialValues={{text: ""}} onSubmit={(values,{resetForm}) => {
+                    props.addMessage(values);
+                    resetForm({})
+                }}>
+
+                    <Form>
+                        <Field type={'text'} name={'text'} placeholder={"Your message"}></Field>
+                        <button type={'submit'}>Send</button>
+                    </Form>
+
+                </Formik>
+
+            </div>
+
         </div>
 
     </div>)

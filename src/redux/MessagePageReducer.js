@@ -40,9 +40,10 @@ const EDIT_CURRENT_MESSAGE = "EDIT-CURRENT-MESSAGE"
     ACTION CREATORS
 
  */
-export const addMessage = () => {
+export const addMessage = (values) => {
     return {
-        type: ADD_MESSAGE
+        type: ADD_MESSAGE,
+        values
     }
 }
 
@@ -82,7 +83,7 @@ export const messagePageReducer = (state = initial_state, action) => {
 
                     {
                         id: state.messageData.at(-1).id + 1,
-                        message: state.currentMessage.text,
+                        message: action.values.text,
                     }
 
                 ],
