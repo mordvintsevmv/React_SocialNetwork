@@ -3,8 +3,7 @@ import Post from'./Post/Post';
 import React from 'react'
 import {Field, Formik, Form} from "formik";
 
-const MyPosts = (props) => {
-
+const MyPosts = React.memo((props) => {
     let postElements = props.profilePage.postData.map(el => <Post text={el.text} key={el.id} likes={el.likes} name={el.name}/>);
 
     return(
@@ -34,6 +33,6 @@ const MyPosts = (props) => {
                 </div>
             </div>
     );
-}
+})
 
 export default MyPosts;
