@@ -1,57 +1,51 @@
 import ProfileInfoCSS from './ProfileInfo.module.css'
-import React from "react";
+import React, {useState} from "react";
 
-class ProfileStatus extends React.Component{
+const ProfileStatus = (props) => {
 
-    state = {
-        editMode: false, status: this.props.status
+    const [editMode, setEditMode] = useState(false)
+    const [status, setStatus] = useState(props.status)
+
+    const onStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
+
     }
 
-    onStatusChange = (e) => {
-        this.setState({
-            status: e.currentTarget.value
-        })
+    const activateEditMode = () => {
+        setStatus(props.status)
+        setEditMode(true)
     }
 
-    activateEditMode = () => {
-        this.setState({
-            editMode: true, status: this.props.status,
-        })
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        props.updateStatus(status);
     }
 
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false,
-        })
-        this.props.updateStatus(this.state.status);
-    }
-
-    onEnter = (event) => {
+    const onEnter = (event) => {
         if (event.keyCode === 13) {
-            this.deactivateEditMode();
+            deactivateEditMode();
         }
     }
 
-    render() {
-        return (<>
-                {(!this.state.editMode || (this.props.myID !== this.props.id)) &&
-                    <div className={ProfileInfoCSS.description}>
-                        <span onDoubleClick={this.activateEditMode}>
-                            {this.props.status === null ? "" : this.props.status}
+    return (<>
+            {(!editMode || (props.myID !== props.id)) && <div className={ProfileInfoCSS.description}>
+                        <span >
+                            {props.status === null ? "" : props.status}
                         </span>
-                    </div>}
+                <span className={ProfileInfoCSS.edit_button}>
+                    <img src={"https://cdn0.iconfinder.com/data/icons/back-to-school/90/circle-school-learn-study-subject-math-pencil-edit-1024.png"} onClick={activateEditMode} alt={"edit"}/>
+                </span>
+            </div>}
 
-                {this.state.editMode && (this.props.myID === this.props.id) &&
-                    <div className={ProfileInfoCSS.description}>
-                        <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}
-                               onKeyDown={this.onEnter}
-                               value={this.state.status === null ? "" : this.state.status}/>
-                    </div>}
-            </>
+            {editMode && (props.myID === props.id) && <div className={ProfileInfoCSS.description}>
+                <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode}
+                       onKeyDown={onEnter}
+                       value={status === null ? "" : status}/>
+            </div>}
+        </>
 
-        )
-    }
-
+    )
 }
+
 
 export default ProfileStatus
