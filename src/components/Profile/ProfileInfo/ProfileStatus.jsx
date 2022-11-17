@@ -31,9 +31,6 @@ const ProfileStatus = (props) => {
                         <span >
                             {props.status === null ? "" : props.status}
                         </span>
-                <span className={ProfileInfoCSS.edit_button}>
-                    <img src={"https://cdn0.iconfinder.com/data/icons/back-to-school/90/circle-school-learn-study-subject-math-pencil-edit-1024.png"} onClick={activateEditMode} alt={"edit"}/>
-                </span>
             </div>}
 
             {(!editMode && (props.myID === props.id)) && <div className={ProfileInfoCSS.description}>
