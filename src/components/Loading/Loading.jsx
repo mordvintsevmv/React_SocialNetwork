@@ -2,7 +2,7 @@ import LoadingGIF from '../../img/1481.gif'
 
 const Loading = () => {
     return (<div>
-        <img src={LoadingGIF} alt=""/>
+        <img src={LoadingGIF} width="400px" alt=""/>
     </div>)
 }
 

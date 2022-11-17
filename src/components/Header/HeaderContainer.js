@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {checkAuth} from "../../redux/authReducer";
+import {logout} from "../../redux/authReducer";
 import Header from "./Header";
 
 const mapStateToProps = (state) => {
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 }
 
 const objectDispatchToProps = {
-    checkAuth,
+    logout
 }
 
 const HeaderContainer = connect(mapStateToProps, objectDispatchToProps)(Header);

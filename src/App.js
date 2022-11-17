@@ -10,47 +10,73 @@ import Login from './components/Login/Login'
 import UsersContainer from './components/Users/UsersContainer'
 import {Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Messages/MessagesContainer";
+import {useEffect} from "react";
+import {connect} from "react-redux";
+import {initialiseApp} from "./redux/appReducer";
+import Loading from "./components/Loading/Loading";
 
-const App = () => {
+const App = (props) => {
 
-    return (<div className='app-wrapper'>
+    useEffect(() => {
+        props.initialiseApp();
+    }, [])
 
-            <HeaderContainer/>
+    if (!props.app.isInitialised){
+        console.log("start")
+        console.log(props.app.isInitialised)
+        return <Loading/>
+    }else {
+        console.log("stop")
+        console.log(props.app.isInitialised)
 
-            <div className="bottom_part">
+        return (<div className='app-wrapper'>
 
-                <Nav/>
+                <HeaderContainer/>
 
-                <div className="content">
+                <div className="bottom_part">
 
-                    <Routes>
+                    <Nav/>
 
-                        <Route path="/profile" element={<ProfileContainer/>}>
-                            <Route path=":userID" element={<ProfileContainer/>}/>
-                        </Route>
+                    <div className="content">
 
-                        <Route path="/messages" element={<MessagesContainer/>}>
-                            <Route path=":dialogueID" element={<MessagesContainer/>}/>
-                        </Route>
+                        <Routes>
 
-                        <Route path="/users/*" element={<UsersContainer/>}/>
-                        <Route path="/news/*" element={<News/>}/>
-                        <Route path="/music/*" element={<Music/>}/>
-                        <Route path="/settings/*" element={<Settings/>}/>
+                            <Route path="/profile" element={<ProfileContainer/>}>
+                                <Route path=":userID" element={<ProfileContainer/>}/>
+                            </Route>
 
-                        <Route path="/login" element={<Login/>}/>
+                            <Route path="/messages" element={<MessagesContainer/>}>
+                                <Route path=":dialogueID" element={<MessagesContainer/>}/>
+                            </Route>
+
+                            <Route path="/users/*" element={<UsersContainer/>}/>
+                            <Route path="/news/*" element={<News/>}/>
+                            <Route path="/music/*" element={<Music/>}/>
+                            <Route path="/settings/*" element={<Settings/>}/>
+
+                            <Route path="/login" element={<Login/>}/>
 
 
-                    </Routes>
+                        </Routes>
+
+                    </div>
 
                 </div>
 
+
             </div>
 
-
-        </div>
-
-    );
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) =>{
+    return {
+        app: state.app
+    }
+}
+const mapDispatchToProps = {
+    initialiseApp
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

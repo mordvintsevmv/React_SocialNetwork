@@ -1,13 +1,12 @@
 import HeaderCSS from './Header.module.css';
 import logoMonkey from '../../img/logoMonkey.ico'
 import {NavLink} from "react-router-dom";
-import {useEffect} from "react";
 
 const Header = (props) => {
 
-    useEffect(() => {
-        props.checkAuth();
-    }, [])
+    const onLogoutButton = () => {
+        props.logout();
+    }
 
     return (<header className={HeaderCSS.header}>
             <div className={HeaderCSS.title_block}>
@@ -18,7 +17,10 @@ const Header = (props) => {
 
             <div className={HeaderCSS.auth_block}>
                 {props.auth.isAuth
-                    ? <div className={HeaderCSS.login_button}>{props.auth.login}</div>
+                    ? <div className={HeaderCSS.login_logout_block}>
+                        {props.auth.login}
+                        <span className={HeaderCSS.logout_button} onClick={onLogoutButton}> logout</span>
+                </div>
                     : <NavLink to="/login" className={HeaderCSS.login_button}>Login</NavLink>
                 }
 

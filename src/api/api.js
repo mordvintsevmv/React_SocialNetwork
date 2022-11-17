@@ -5,6 +5,12 @@ const instance = axios.create({
         "API-KEY": "33804be5-efc1-4713-806e-e0af1a2925a7"
     }
 })
+
+/*
+
+UserPage functions
+
+ */
 export const serverGetUsers = (page, count) => {
     console.log("serverGetUsers")
     return instance.get(`users?page=${page}&count=${count}`).then(r => r.data)
@@ -20,11 +26,12 @@ export const serverUnfollow = (userID) => {
     return instance.delete(`follow/${userID}`).then(r => r.data)
 }
 
-export const serverCheckAuth = () => {
-    console.log("serverCheckAuth")
-    return instance.get(`auth/me`).then(r => r.data)
-}
 
+/*
+
+ProfilePage functions
+
+ */
 export const serverLoadProfile = (userID) => {
     console.log("serverLoadProfile")
     return instance.get(`profile/${userID}`).then(r => r.data)
@@ -43,4 +50,25 @@ export const serverUploadPhoto = (image) => {
 export const serverUpdateStatus = (status) => {
     console.log("serverUpdateStatus")
     return instance.put(`profile/status`, {status}).then(r => r.data)
+}
+
+
+/*
+
+AuthPage functions
+
+ */
+export const serverCheckAuth = () => {
+    console.log("serverCheckAuth")
+    return instance.get(`auth/me`).then(r => r.data)
+}
+
+export const serverLogin = (email, password, rememberMe = false) => {
+    console.log("serverLogin")
+    return instance.post(`auth/login`, {email, password, rememberMe}).then(r => r.data)
+}
+
+export const serverLogout = () => {
+    console.log("serverLogout")
+    return instance.delete(`auth/login`).then(r => r.data)
 }

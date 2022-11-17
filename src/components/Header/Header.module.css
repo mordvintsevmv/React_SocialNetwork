@@ -27,8 +27,30 @@
     right:15px;
 }
 
+.login_logout_block {
+    text-decoration: none;
+    color: white;
+    font-size: 14pt;
+}
+
 .login_button{
     text-decoration: none;
     color: white;
     font-size: 14pt;
+}
+
+.login_button:hover{
+    color: #FE7555;
+
+}
+
+.logout_button{
+    color: #a5a0a1;
+    font-size: 9pt;
+    padding-left: 3px;
+    cursor: pointer;
+}
+
+.logout_button:hover{
+    color: #FE7555;
 }
