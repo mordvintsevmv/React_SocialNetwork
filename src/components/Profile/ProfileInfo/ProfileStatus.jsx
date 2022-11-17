@@ -8,7 +8,6 @@ const ProfileStatus = (props) => {
 
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value)
-
     }
 
     const activateEditMode = () => {
@@ -28,7 +27,16 @@ const ProfileStatus = (props) => {
     }
 
     return (<>
-            {(!editMode || (props.myID !== props.id)) && <div className={ProfileInfoCSS.description}>
+            {(!editMode && (props.myID !== props.id)) && <div className={ProfileInfoCSS.description}>
+                        <span >
+                            {props.status === null ? "" : props.status}
+                        </span>
+                <span className={ProfileInfoCSS.edit_button}>
+                    <img src={"https://cdn0.iconfinder.com/data/icons/back-to-school/90/circle-school-learn-study-subject-math-pencil-edit-1024.png"} onClick={activateEditMode} alt={"edit"}/>
+                </span>
+            </div>}
+
+            {(!editMode && (props.myID === props.id)) && <div className={ProfileInfoCSS.description}>
                         <span >
                             {props.status === null ? "" : props.status}
                         </span>
