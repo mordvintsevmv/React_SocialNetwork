@@ -46,7 +46,7 @@ export const onToggleIsFollowingProgress = (isFetching, userID) => ({
     THUNK
 
  */
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (currentPage, pageSize) => {
     return (dispatch) => {
 
         serverGetUsers(currentPage, pageSize).then(r => {

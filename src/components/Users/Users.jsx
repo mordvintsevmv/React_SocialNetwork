@@ -4,11 +4,11 @@ import UserItem from "./UserItem/UserItem";
 
 let Users = (props) => {
 
-    if (props.userPage.totalUsersCount === 0) {
+    if (props.totalUsersCount === 0) {
         props.getUsers(1, 5)
     }
 
-    const userElement = props.userPage.users.map((user) => {
+    const userElement = props.users.map((user) => {
 
         return <UserItem
             user={user}
@@ -20,26 +20,26 @@ let Users = (props) => {
         />
     })
 
-    let pageCount = Math.ceil(props.userPage.totalUsersCount / props.userPage.pageSize)
+    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     let pages = []
 
-    for (let i = props.userPage.currentPage; i > props.userPage.currentPage - 3; i--) {
+    for (let i = props.currentPage; i > props.currentPage - 3; i--) {
         if (i < 1) break
         pages.unshift({el:i,key:i})
     }
 
-    if (props.userPage.currentPage > 3) {
+    if (props.currentPage > 3) {
         pages.unshift({el:"...",key:"left"})
         pages.unshift({el:1,key:1});
     }
 
-    for (let i = props.userPage.currentPage + 1; i < props.userPage.currentPage + 3; i++) {
+    for (let i = props.currentPage + 1; i < props.currentPage + 3; i++) {
         if (i > pageCount) break
         pages.push({el:i,key:i})
     }
 
-    if (props.userPage.currentPage < (pageCount - 3)) {
+    if (props.currentPage < (pageCount - 3)) {
         pages.push({el:"...",key:"right"})
         pages.push({el:pageCount,key:pageCount});
     }
@@ -58,7 +58,7 @@ let Users = (props) => {
                                     props.getUsers(p.el, 5)
                                 }}
                                 className={
-                                    p.el === props.userPage.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
+                                    p.el === props.currentPage ? UsersCSS.current_page : UsersCSS.inactive_page
                                 }
                                 key={p.key}
                             >
