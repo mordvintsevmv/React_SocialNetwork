@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/React_SocialNetwork/static/css/main.17e48ed3.css",
+    "main.js": "/React_SocialNetwork/static/js/main.2e704fdc.js",
+    "static/js/787.28cb0dcd.chunk.js": "/React_SocialNetwork/static/js/787.28cb0dcd.chunk.js",
+    "static/media/forest.jpg": "/React_SocialNetwork/static/media/forest.7c2cdef8fdbb632ef6f1.jpg",
+    "static/media/avatar.png": "/React_SocialNetwork/static/media/avatar.4daebed181e8db2ea408.png",
+    "static/media/logoMonkey.ico": "/React_SocialNetwork/static/media/logoMonkey.5bd8068dbd93c01c538f.ico",
+    "static/media/1481.gif": "/React_SocialNetwork/static/media/1481.bb4444861072a1875d36.gif",
+    "index.html": "/React_SocialNetwork/index.html",
+    "main.17e48ed3.css.map": "/React_SocialNetwork/static/css/main.17e48ed3.css.map",
+    "main.2e704fdc.js.map": "/React_SocialNetwork/static/js/main.2e704fdc.js.map",
+    "787.28cb0dcd.chunk.js.map": "/React_SocialNetwork/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17e48ed3.css",
+    "static/js/main.2e704fdc.js"
+  ]
+}
