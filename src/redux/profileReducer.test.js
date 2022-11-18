@@ -71,3 +71,11 @@ it('Post should be deleted | length', () => {
 
     expect(newState.postData.length).toBe(3)
 })
+
+it(`Post shouldn't be deleted with wrong id | length`, () => {
+    const action = deletePost(999)
+
+    const newState = profilePageReducer(initial_state, action)
+
+    expect(newState.postData.length).toBe(4)
+})
