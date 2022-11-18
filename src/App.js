@@ -8,18 +8,19 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import Login from './components/Login/Login'
 import UsersContainer from './components/Users/UsersContainer'
-import {Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Messages/MessagesContainer";
-import {useEffect} from "react";
-import {connect} from "react-redux";
+import React, {useEffect} from "react";
+import {connect, Provider} from "react-redux";
 import {initialiseApp} from "./redux/appReducer";
 import Loading from "./components/Loading/Loading";
+import {store} from "./redux/reduxStore";
 
 const App = (props) => {
 
     useEffect(() => {
         props.initialiseApp();
-    }, [])
+    }, [props.app.isInitialised])
 
     if (!props.app.isInitialised) {
         return <Loading/>
@@ -39,6 +40,8 @@ const App = (props) => {
                     <div className="content">
 
                         <Routes>
+
+                            <Route path="/" element={<ProfileContainer/>}/>
 
                             <Route path="/profile" element={<ProfileContainer/>}>
                                 <Route path=":userID" element={<ProfileContainer/>}/>
@@ -79,4 +82,16 @@ const mapDispatchToProps = {
     initialiseApp
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
+
+const AppWrapped = () => {
+    return(
+    <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </BrowserRouter>
+    )
+}
+
+export default AppWrapped
