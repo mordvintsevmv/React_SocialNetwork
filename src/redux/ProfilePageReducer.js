@@ -57,10 +57,10 @@ const SET_STATUS = "SET_STATUS"
     ACTION CREATORS
 
  */
-export const addPost = (values) => {
+export const addPost = (text) => {
     return {
         type: ADD_POST,
-        values
+        text
     }
 }
 
@@ -138,7 +138,7 @@ export const profilePageReducer = (state = initial_state, action) => {
                     {
                         id: state.postData.at(-1).id + 1,
                         name: "Polina",
-                        text: action.values.post,
+                        text: action.text,
                         likes: 0
                     }
 

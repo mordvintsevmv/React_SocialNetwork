@@ -14,7 +14,6 @@ import {useEffect} from "react";
 import {connect} from "react-redux";
 import {initialiseApp} from "./redux/appReducer";
 import Loading from "./components/Loading/Loading";
-import {store} from "./redux/reduxStore";
 
 const App = (props) => {
 
@@ -23,54 +22,49 @@ const App = (props) => {
     }, [])
 
     if (!props.app.isInitialised) {
-        console.log("start")
-        console.log(props.app.isInitialised)
         return <Loading/>
     } else {
-        console.log("stop")
-        console.log(props.app.isInitialised)
 
-        return (<BrowserRouter>
-                <Provider store={store}>
-
-                    <div className='app-wrapper'>
-
-                        <HeaderContainer/>
-
-                        <div className="bottom_part">
-
-                            <Nav/>
-
-                            <div className="content">
-
-                                <Routes>
-
-                                    <Route path="/profile" element={<ProfileContainer/>}>
-                                        <Route path=":userID" element={<ProfileContainer/>}/>
-                                    </Route>
-
-                                    <Route path="/messages" element={<MessagesContainer/>}>
-                                        <Route path=":dialogueID" element={<MessagesContainer/>}/>
-                                    </Route>
-
-                                    <Route path="/users/*" element={<UsersContainer/>}/>
-                                    <Route path="/news/*" element={<News/>}/>
-                                    <Route path="/music/*" element={<Music/>}/>
-                                    <Route path="/settings/*" element={<Settings/>}/>
-
-                                    <Route path="/login" element={<Login/>}/>
+        return (
 
 
-                                </Routes>
+            <div className='app-wrapper'>
 
-                            </div>
+                <HeaderContainer/>
 
-                        </div>
+                <div className="bottom_part">
 
+                    <Nav/>
+
+                    <div className="content">
+
+                        <Routes>
+
+                            <Route path="/profile" element={<ProfileContainer/>}>
+                                <Route path=":userID" element={<ProfileContainer/>}/>
+                            </Route>
+
+                            <Route path="/messages" element={<MessagesContainer/>}>
+                                <Route path=":dialogueID" element={<MessagesContainer/>}/>
+                            </Route>
+
+                            <Route path="/users/*" element={<UsersContainer/>}/>
+                            <Route path="/news/*" element={<News/>}/>
+                            <Route path="/music/*" element={<Music/>}/>
+                            <Route path="/settings/*" element={<Settings/>}/>
+
+                            <Route path="/login" element={<Login/>}/>
+
+
+                        </Routes>
 
                     </div>
-                </Provider>
-            </BrowserRouter>
+
+                </div>
+
+
+            </div>
+
 
         );
     }

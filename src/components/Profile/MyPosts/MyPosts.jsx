@@ -15,7 +15,7 @@ const MyPosts = React.memo((props) => {
                     <h4>New Post</h4>
 
                     <Formik initialValues={{post:""}} onSubmit={(values,{resetForm}) =>{
-                        props.addPost(values);
+                        props.addPost(values.post);
                         resetForm({})
                     }}>
                         <Form>
