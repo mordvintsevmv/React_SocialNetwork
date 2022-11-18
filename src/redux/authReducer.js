@@ -35,41 +35,36 @@ export const setUserData = (id, email, login, isAuth) => {
     THUNK
 
  */
-export const checkAuth = () => {
-    return (dispatch) => {
-        serverCheckAuth().then(r => {
-            if (r.resultCode === 0) {
-                dispatch(setUserData(r.data.id, r.data.email, r.data.login, true));
-            }
-        })
+export const checkAuth = () => async (dispatch) => {
+    const response = await serverCheckAuth()
+
+    if (response.resultCode === 0) {
+        dispatch(setUserData(response.data.id, response.data.email, response.data.login, true));
     }
 }
 
 
-export const login = (email, password, rememberMe, setStatus) => {
-    return (dispatch) => {
-        serverLogin(email, password, rememberMe).then(r => {
-            if (r.resultCode === 0) {
-                dispatch(checkAuth());
-            } else{
-                setStatus("Something wrong!")
-            }
-        })
+export const login = (email, password, rememberMe, setStatus) => async (dispatch) => {
+    const response = await serverLogin(email, password, rememberMe)
 
+    if (response.resultCode === 0) {
+        dispatch(checkAuth());
+    } else {
+        setStatus("Something wrong!")
+    }
+
+}
+
+
+export const logout = () => async (dispatch) => {
+    const response = await serverLogout()
+
+    if (response.resultCode === 0) {
+        dispatch(setUserData(null, null, null, false));
     }
 }
 
 
-export const logout = () => {
-    return (dispatch) => {
-        serverLogout().then(r => {
-            if (r.resultCode === 0) {
-                dispatch(setUserData(null, null, null, false));
-            }
-        })
-
-    }
-}
 /*
 
     REDUCER

@@ -10,12 +10,11 @@ let initial_state = {
     users: [], pageSize: 5, totalUsersCount: 0, currentPage: 1, isFollowingProgress: []
 }
 
-
 /*
 
-    ACTION TYPES
+   ACTION TYPES
 
- */
+*/
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USER = "SET_USER"
@@ -46,48 +45,45 @@ export const onToggleIsFollowingProgress = (isFetching, userID) => ({
     THUNK
 
  */
-export const requestUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 
-        serverGetUsers(currentPage, pageSize).then(r => {
+    const response = await serverGetUsers(currentPage, pageSize)
 
-
-            dispatch(onSetUsers(r.items.map(el => {
-                return ({
-                    ...el, location: {
-                        country: "USA", city: "Boston"
-                    }, status: "My description!",
-                })
-            })))
-            dispatch(onSetTotalUsersCount(r.totalCount))
-            dispatch(onSetCurrentPage(currentPage))
-
+    dispatch(onSetUsers(response.items.map(el => {
+        return ({
+            ...el, location: {
+                country: "USA", city: "Boston"
+            }, status: "My description!",
         })
-    }
+    })))
+    dispatch(onSetTotalUsersCount(response.totalCount))
+    dispatch(onSetCurrentPage(currentPage))
+
 }
 
-export const follow = (id) => {
-    return (dispatch) => {
-        dispatch(onToggleIsFollowingProgress(true, id))
-        serverFollow(id).then(r => {
-            if (r.resultCode === 0) {
-                dispatch(onFollow(id));
-            }
-        })
-        dispatch(onToggleIsFollowingProgress(false, id))
+export const follow = (id) => async (dispatch) => {
+    dispatch(onToggleIsFollowingProgress(true, id))
+
+    const response = await serverFollow(id)
+
+    if (response.resultCode === 0) {
+        dispatch(onFollow(id));
     }
+
+    dispatch(onToggleIsFollowingProgress(false, id))
 }
 
-export const unfollow = (id) => {
-    return (dispatch) => {
-        dispatch(onToggleIsFollowingProgress(true, id))
-        serverUnfollow(id).then(r => {
-            if (r.resultCode === 0) {
-                dispatch(onUnfollow(id));
-            }
-        })
-        dispatch(onToggleIsFollowingProgress(false, id))
+export const unfollow = (id) => async (dispatch) => {
+    dispatch(onToggleIsFollowingProgress(true, id))
+
+    const response = await serverUnfollow(id)
+
+    if (response.resultCode === 0) {
+        dispatch(onUnfollow(id));
     }
+
+    dispatch(onToggleIsFollowingProgress(false, id))
+
 }
 
 

@@ -65,7 +65,7 @@ export const addPost = (text) => {
 }
 
 export const deletePost = (id) => {
-    return{
+    return {
         type: DELETE_POST,
         id
     }
@@ -98,31 +98,22 @@ export const setStatus = (status) => {
     THUNK
 
  */
-export const loadProfile = (userID) => {
-    return (dispatch) => {
-        serverLoadProfile(userID).then(r => {
-            dispatch(setProfile(r))
-        })
+export const loadProfile = (userID) => async (dispatch) => {
+    const response = await serverLoadProfile(userID)
+    dispatch(setProfile(response))
 
-    }
 }
 
-export const loadStatus = (userID) => {
-    return (dispatch) => {
-        serverLoadStatus(userID).then(r => {
-            dispatch(setStatus(r))
-        })
-    }
+export const loadStatus = (userID) => async (dispatch) => {
+    const response = await serverLoadStatus(userID)
+    dispatch(setStatus(response))
+
 }
 
-export const updateStatus = (status) => {
-    return (dispatch) => {
-        serverUpdateStatus(status).then(r => {
-            if (r.resultCode === 0) {
-                dispatch(setStatus(status))
-            }
-            }
-        )
+export const updateStatus = (status) => async (dispatch) => {
+    const response = await serverUpdateStatus(status)
+    if (response.resultCode === 0) {
+        dispatch(setStatus(status))
     }
 }
 
@@ -159,8 +150,8 @@ export const profilePageReducer = (state = initial_state, action) => {
             };
         }
 
-        case(DELETE_POST):{
-            return{
+        case(DELETE_POST): {
+            return {
                 ...state,
                 postData: state.postData.filter(p => p.id !== action.id)
             }
