@@ -50,7 +50,7 @@ const ADD_POST = "ADD_POST"
 const EDIT_CURRENT_POST = "EDIT_CURRENT_POST"
 const SET_PROFILE = "SET_PROFILE"
 const SET_STATUS = "SET_STATUS"
-
+const DELETE_POST = "DELETE_POST"
 
 /*
 
@@ -61,6 +61,13 @@ export const addPost = (text) => {
     return {
         type: ADD_POST,
         text
+    }
+}
+
+export const deletePost = (id) => {
+    return{
+        type: DELETE_POST,
+        id
     }
 }
 
@@ -150,6 +157,13 @@ export const profilePageReducer = (state = initial_state, action) => {
                     }
 
             };
+        }
+
+        case(DELETE_POST):{
+            return{
+                ...state,
+                postData: state.postData.filter(p => p.id !== action.id)
+            }
         }
 
         case(EDIT_CURRENT_POST): {

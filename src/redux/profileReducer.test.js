@@ -1,4 +1,4 @@
-import {addPost, profilePageReducer} from "./ProfilePageReducer";
+import {addPost, profilePageReducer, deletePost} from "./ProfilePageReducer";
 
 let initial_state = {
     postData: [{id: 1, name: "Maksim", text: "First post", likes: 5}, {
@@ -62,4 +62,12 @@ it('New post should be added | likes', () => {
     const newState = profilePageReducer(initial_state, action)
 
     expect(newState.postData[4].likes).toBe(0)
+})
+
+it('Post should be deleted | length', () => {
+    const action = deletePost(1)
+
+    const newState = profilePageReducer(initial_state, action)
+
+    expect(newState.postData.length).toBe(3)
 })
