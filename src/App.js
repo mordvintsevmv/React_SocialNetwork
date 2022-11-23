@@ -18,10 +18,9 @@ import {store} from "./redux/reduxStore";
 
 const App = (props) => {
 
-
     useEffect(() => {
         props.initialiseApp();
-    }, [props, props.app.isInitialised])
+    }, [props.app.isInitialised])
 
     return (
 
