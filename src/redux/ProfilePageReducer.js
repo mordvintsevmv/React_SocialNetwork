@@ -3,7 +3,7 @@
     INITIAL STATE
 
  */
-import {serverLoadProfile, serverLoadStatus, serverUpdateStatus} from "../api/api";
+import {serverLoadProfile, serverLoadStatus, serverUpdateStatus, serverUploadPhoto} from "../api/api";
 
 let initial_state = {
     postData: [
@@ -51,6 +51,8 @@ const EDIT_CURRENT_POST = "EDIT_CURRENT_POST"
 const SET_PROFILE = "SET_PROFILE"
 const SET_STATUS = "SET_STATUS"
 const DELETE_POST = "DELETE_POST"
+const SET_PHOTOS = "SET_PHOTOS"
+
 
 /*
 
@@ -92,6 +94,13 @@ export const setStatus = (status) => {
     }
 }
 
+export const setPhoto = (photos) => {
+    return {
+        type: SET_PHOTOS,
+        photos
+    }
+}
+
 
 /*
 
@@ -117,6 +126,13 @@ export const updateStatus = (status) => async (dispatch) => {
     }
 }
 
+
+export const updatePhoto = (file) => async (dispatch) => {
+    const response = await serverUploadPhoto(file)
+    if (response.resultCode === 0) {
+        dispatch(setPhoto(response.data))
+    }
+}
 /*
 
     REDUCER
@@ -183,6 +199,16 @@ export const profilePageReducer = (state = initial_state, action) => {
                 profile: {
                     ...state.profile,
                     status: action.status
+                }
+            }
+        }
+
+        case(SET_PHOTOS): {
+            return {
+                ...state,
+                photos: {
+                    small: action.photos.small,
+                    large: action.photos.large
                 }
             }
         }

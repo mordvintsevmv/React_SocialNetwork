@@ -10,7 +10,9 @@ const Header = (props) => {
 
     return (<header className={HeaderCSS.header}>
             <div className={HeaderCSS.title_block}>
-                <a href="/"><img src={logoMonkey} alt='monkey'/></a>
+                <a href="/React_SocialNetwork">
+                    <img src={logoMonkey} alt='monkey'/>
+                </a>
                 <h2 className={HeaderCSS.name}>Social Net</h2>
             </div>
 

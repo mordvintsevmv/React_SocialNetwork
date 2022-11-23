@@ -19,21 +19,21 @@ const Nav = () => {
                      className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>Users</NavLink>
         </div>
 
-        <div className={NavCSS.item_block}>
-            <NavLink to="/news" className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>News</NavLink>
-        </div>
+        {/*<div className={NavCSS.item_block}>*/}
+        {/*    <NavLink to="/news" className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>News</NavLink>*/}
+        {/*</div>*/}
 
-        <div className={NavCSS.item_block}>
-            <NavLink to="/music"
-                     className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>Music</NavLink>
-        </div>
+        {/*<div className={NavCSS.item_block}>*/}
+        {/*    <NavLink to="/music"*/}
+        {/*             className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>Music</NavLink>*/}
+        {/*</div>*/}
 
-        <br/>
+        {/*<br/>*/}
 
-        <div className={NavCSS.item_block}>
-            <NavLink to="/settings"
-                     className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>Settings</NavLink>
-        </div>
+        {/*<div className={NavCSS.item_block}>*/}
+        {/*    <NavLink to="/settings"*/}
+        {/*             className={navData => navData.isActive ? NavCSS.active : NavCSS.item}>Settings</NavLink>*/}
+        {/*</div>*/}
 
     </nav>);
 }

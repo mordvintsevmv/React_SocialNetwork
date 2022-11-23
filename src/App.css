@@ -1,4 +1,4 @@
-.app-wrapper {
+.app_wrapper {
     margin: 0 auto;
 }
 
@@ -20,4 +20,9 @@ html {
     margin: 5px auto 0 auto;
     grid-template-columns: 2fr 10fr;
     grid-gap: 0 10px;
+}
+
+.app_wrapper_blur {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
 }

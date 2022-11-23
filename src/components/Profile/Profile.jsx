@@ -16,10 +16,10 @@ const Profile = (props) => {
             props.loadProfile(props.myID)
             props.loadStatus(props.myID);
         }
-    }, []);
+    }, [userID, props.profilePage.photos]);
 
     return (<div className={ProfileCSS.profile_wrapper}>
-        <ProfileInfo profile={props.profilePage.profile} myID={props.myID} updateStatus={props.updateStatus}/>
+        <ProfileInfo profile={props.profilePage.profile} myID={props.myID} updateStatus={props.updateStatus} updatePhoto={props.updatePhoto}/>
         <MyPostsContainer/>
     </div>);
 }

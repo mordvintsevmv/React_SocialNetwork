@@ -12,17 +12,17 @@ UserPage functions
 
  */
 export const serverGetUsers = (page, count) => {
-    //console.log("serverGetUsers")
+    console.log("serverGetUsers")
     return instance.get(`users?page=${page}&count=${count}`).then(r => r.data)
 }
 
 export const serverFollow = (userID) => {
-    //console.log("serverFollow")
+    console.log("serverFollow")
     return instance.post(`follow/${userID}`).then(r => r.data)
 }
 
 export const serverUnfollow = (userID) => {
-    //console.log("serverUnfollow")
+    console.log("serverUnfollow")
     return instance.delete(`follow/${userID}`).then(r => r.data)
 }
 
@@ -33,22 +33,24 @@ ProfilePage functions
 
  */
 export const serverLoadProfile = (userID) => {
-    //console.log("serverLoadProfile")
+    console.log("serverLoadProfile")
     return instance.get(`profile/${userID}`).then(r => r.data)
 }
 
 export const serverLoadStatus = (userID) => {
-    //console.log("serverLoadStatus")
+    console.log("serverLoadStatus")
     return instance.get(`profile/status/${userID}`).then(r => r.data)
 }
 
 export const serverUploadPhoto = (image) => {
-    //console.log("serverUploadPhoto")
-    return instance.put(`profile/photo`, {image}).then(r => r.data)
+    console.log("serverUploadPhoto")
+    const formData = new FormData()
+    formData.append("image", image)
+    return instance.put(`profile/photo`, formData, {headers: {"Content-Type": "multipart/form-data"}}).then(r => r.data)
 }
 
 export const serverUpdateStatus = (status) => {
-    //console.log("serverUpdateStatus")
+    console.log("serverUpdateStatus")
     return instance.put(`profile/status`, {status}).then(r => r.data)
 }
 
@@ -59,16 +61,16 @@ AuthPage functions
 
  */
 export const serverCheckAuth = () => {
-    //console.log("serverCheckAuth")
+    console.log("serverCheckAuth")
     return instance.get(`auth/me`).then(r => r.data)
 }
 
 export const serverLogin = (email, password, rememberMe = false) => {
-    //console.log("serverLogin")
+    console.log("serverLogin")
     return instance.post(`auth/login`, {email, password, rememberMe}).then(r => r.data)
 }
 
 export const serverLogout = () => {
-    //console.log("serverLogout")
+    console.log("serverLogout")
     return instance.delete(`auth/login`).then(r => r.data)
 }

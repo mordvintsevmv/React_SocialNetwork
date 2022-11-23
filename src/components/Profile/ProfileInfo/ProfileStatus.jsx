@@ -30,6 +30,12 @@ const ProfileStatus = (props) => {
         }
     }
 
+    const onUploadPhoto = (e) => {
+        if (e.target.files.length){
+            props.updatePhoto(e.target.files[0])
+        }
+    }
+
     return (<>
             {(!editMode && (props.myID !== props.id)) && <div className={ProfileInfoCSS.description}>
                         <span >
@@ -44,12 +50,31 @@ const ProfileStatus = (props) => {
                 <span className={ProfileInfoCSS.edit_button}>
                     <img src={"https://cdn0.iconfinder.com/data/icons/back-to-school/90/circle-school-learn-study-subject-math-pencil-edit-1024.png"} onClick={activateEditMode} alt={"edit"}/>
                 </span>
+
+                <div className={ProfileInfoCSS.upload_button}>
+                    <label htmlFor="file-input">
+                        +
+                    </label>
+
+                    <input id="file-input" type="file" accept={"image/*"} onChange={onUploadPhoto}/>
+                </div>
+
             </div>}
 
             {editMode && (props.myID === props.id) && <div className={ProfileInfoCSS.description}>
                 <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode}
                        onKeyDown={onEnter}
                        value={status === null ? "" : status}/>
+
+                <div className={ProfileInfoCSS.upload_button}>
+                    <label htmlFor="file-input">
+                        +
+                    </label>
+
+                    <input id="file-input" type="file" accept={"image/*"} onChange={onUploadPhoto}/>
+                </div>
+
+
             </div>}
         </>
 

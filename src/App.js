@@ -18,18 +18,20 @@ import {store} from "./redux/reduxStore";
 
 const App = (props) => {
 
+
     useEffect(() => {
         props.initialiseApp();
-    }, [props.app.isInitialised])
+    }, [props, props.app.isInitialised])
 
-    if (!props.app.isInitialised) {
-        return <Loading/>
-    } else {
+    return (
 
-        return (
+        <>
+            {props.app.isInitialised ? null : <Loading/>}
+
+            <div className={props.app.isInitialised ? "app_wrapper" : "app_wrapper_blur"}>
+            {/*<div className={"app_wrapper"}>*/}
 
 
-            <div className='app-wrapper'>
 
                 <HeaderContainer/>
 
@@ -68,9 +70,10 @@ const App = (props) => {
 
             </div>
 
+        </>
 
-        );
-    }
+
+    );
 }
 
 const mapStateToProps = (state) => {
@@ -85,13 +88,11 @@ const mapDispatchToProps = {
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
 
 const AppWrapped = () => {
-    return(
-    <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
-        <Provider store={store}>
-            <AppContainer/>
-        </Provider>
-    </BrowserRouter>
-    )
+    return (<BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>)
 }
 
 export default AppWrapped

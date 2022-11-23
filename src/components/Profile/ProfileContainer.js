@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Profile from './Profile'
-import {loadProfile, loadStatus, updateStatus} from "../../redux/ProfilePageReducer";
+import {loadProfile, loadStatus, updateStatus, updatePhoto} from "../../redux/ProfilePageReducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
@@ -14,7 +14,9 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = {
     loadProfile,
     loadStatus,
-    updateStatus
+    updateStatus,
+    updatePhoto
+
 }
 
 export default compose(withAuthRedirect, connect(mapStateToProps, mapDispatchToProps))(Profile);
