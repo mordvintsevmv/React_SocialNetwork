@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/React_SocialNetwork/static/css/main.4f363897.css",
-    "main.js": "/React_SocialNetwork/static/js/main.b377ce20.js",
+    "main.js": "/React_SocialNetwork/static/js/main.5072d15f.js",
     "static/media/forest.jpg": "/React_SocialNetwork/static/media/forest.7c2cdef8fdbb632ef6f1.jpg",
     "static/media/avatar.png": "/React_SocialNetwork/static/media/avatar.4daebed181e8db2ea408.png",
     "static/media/logoMonkey.ico": "/React_SocialNetwork/static/media/logoMonkey.5bd8068dbd93c01c538f.ico",
     "index.html": "/React_SocialNetwork/index.html",
     "main.4f363897.css.map": "/React_SocialNetwork/static/css/main.4f363897.css.map",
-    "main.b377ce20.js.map": "/React_SocialNetwork/static/js/main.b377ce20.js.map"
+    "main.5072d15f.js.map": "/React_SocialNetwork/static/js/main.5072d15f.js.map"
   },
   "entrypoints": [
     "static/css/main.4f363897.css",
-    "static/js/main.b377ce20.js"
+    "static/js/main.5072d15f.js"
   ]
 }
