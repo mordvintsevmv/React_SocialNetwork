@@ -1,4 +1,4 @@
-# React Social Network
+# (React) Social Network
 
 This is a prototype of React Social network!
 
