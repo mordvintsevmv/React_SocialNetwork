@@ -1,5 +1,8 @@
 # React Social Network
 
+This is a prototype of React Social network!
+
+
 <a href="https://mordvintsevmv.github.io/React_SocialNetwork" target="_blank">Test App</a>
 
 ## Login
