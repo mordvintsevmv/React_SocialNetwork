@@ -15,6 +15,7 @@ import {connect, Provider} from "react-redux";
 import {initialiseApp} from "./redux/appReducer";
 import Loading from "./components/Loading/Loading";
 import {store} from "./redux/reduxStore";
+import About from "./components/About/About";
 
 const App = (props) => {
 
@@ -42,7 +43,7 @@ const App = (props) => {
 
                         <Routes>
 
-                            <Route path="/" element={<ProfileContainer/>}/>
+                            <Route path="/" element={<About/>}/>
 
                             <Route path="/profile" element={<ProfileContainer/>}>
                                 <Route path=":userID" element={<ProfileContainer/>}/>
