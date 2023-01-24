@@ -69,9 +69,6 @@ const LoginForm = (props) => {
                     </button>
                 </div>
 
-
-
-
             </Form>)}
 
         </Formik>
